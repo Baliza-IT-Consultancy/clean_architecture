@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(localization.title),
       ),
-      body: Text("Hello World"),
+      body: const Text("Hello World"),
     );
   }
 }

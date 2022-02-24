@@ -1,6 +1,8 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../features/shared/auth/presentation/pages/auth_selection_page.dart';
+import '../../features/shared/auth/presentation/pages/login_page.dart';
 import '../routes.dart';
 
 /// Location of the Auth Module
@@ -10,17 +12,22 @@ class AuthLocation extends BeamLocation {
   @override
   List<BeamPage> buildPages(
       BuildContext context, RouteInformationSerializable state) {
-    final location = state.routeInformation.location ?? '';
-
+    final path = state.uri.path;
     return [
-      if (location.contains(Routes.auth) || location.contains(Routes.login))
+      const BeamPage(
+        key: ValueKey("Auth Selection Page"),
+        title: "Login or Signup",
+        name: "Login or Signup Page",
+        child: AuthSelectionPage(),
+      ),
+      if (path == Routes.login)
         const BeamPage(
           key: ValueKey('Login Page'),
           title: "Login",
           name: "Login Page",
-          child: Text("Login Page"),
+          child: LoginPage(),
         ),
-      if (location.contains(Routes.signup))
+      if (path == Routes.signup)
         const BeamPage(
           key: ValueKey('Signup Page'),
           title: "Signup",

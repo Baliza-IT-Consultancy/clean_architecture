@@ -4,7 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../core/configs/app_configs.dart';
-import '../../features/shared/presentation/blocs/app_bloc/app_bloc.dart';
+import '../../core/constants/constraints/constraints.dart';
+import '../../features/shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../routes/route_manager.dart';
 import '../injection/injection.dart';
 
@@ -19,11 +20,8 @@ class DevApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AppBloc>(
-          create: (context) => sl()
-            ..add(
-              const AppEvent.started(),
-            ),
+        BlocProvider<AuthBloc>(
+          create: (context) => sl()..add(const AuthEvent.started()),
         ),
       ],
       child: BeamerProvider(
@@ -33,6 +31,15 @@ class DevApp extends StatelessWidget {
             appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
             colorScheme: ColorScheme.fromSwatch(
               accentColor: const Color(0xFF13B9FF),
+            ),
+            inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    AppConstraints.inputFieldOutlineBorderRadius,
+                  ),
+                ),
+              ),
             ),
           ),
           localizationsDelegates: AppLocalizations.localizationsDelegates,

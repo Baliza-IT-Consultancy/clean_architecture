@@ -2,7 +2,6 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import '../../core/configs/app_configs.dart';
 import '../../routes/route_manager.dart';
 
 /// {@template app_dev}

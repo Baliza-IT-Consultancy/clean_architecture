@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/configs/app_configs.dart';
 import '../../../../routes/routes.dart';
-import '../../../shared/presentation/blocs/app_bloc/app_bloc.dart';
+import '../../../shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 
 /// {@template splash_page}
 /// This page show a loading icon and will be the first one to mount.
@@ -22,11 +22,14 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<AppBloc, AppState>(
+    return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is AppLoaded) {
-          navigator.beamToReplacementNamed(Routes.home);
-        }
+        state.whenOrNull(
+          unauthenticated: (message) =>
+              navigator.beamToReplacementNamed(Routes.auth),
+          authenticated: (user) =>
+              navigator.beamToReplacementNamed(Routes.home),
+        );
       },
       child: const Material(
         child: Center(

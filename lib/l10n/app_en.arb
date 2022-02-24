@@ -1,3 +1,6 @@
 {
-    "title": "A custom app title"
+    "title": "A custom app title",
+    "@title": {
+        "description": "The title of the app"
+    }
 }

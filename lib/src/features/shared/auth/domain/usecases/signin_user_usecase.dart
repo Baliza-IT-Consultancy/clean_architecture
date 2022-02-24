@@ -1,13 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../../../core/base/usecase.dart';
-import '../../../../core/error/failures.dart';
+import '../../../../../core/base/usecase.dart';
+import '../../../../../core/error/failures.dart';
 import '../entities/user_entity.dart';
 
 /// {@template sign_in_user_usecase}
-/// [UseCase] to sign_in an existing user
+/// A [UseCase] to sign_in an existing user
 /// {@endtemplate}
+@lazySingleton
 class SignInUser extends UseCase<User, IUserSignInParam> {
   @override
   Future<Either<Failure, User>> call(IUserSignInParam param) async {

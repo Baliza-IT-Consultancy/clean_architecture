@@ -1,13 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../../../core/base/usecase.dart';
-import '../../../../core/error/failures.dart';
+import '../../../../../core/base/usecase.dart';
+import '../../../../../core/error/failures.dart';
 import '../entities/user_entity.dart';
 
-/// {@template create_new_user}
-/// [UseCase] to create a new user
+/// {@template create_new_user_usecase}
+/// A [UseCase] to create a new user
 /// {@endtemplate}
+@lazySingleton
 class CreateNewUser extends UseCase<User, ICreateNewUserParam> {
   @override
   Future<Either<Failure, User>> call(ICreateNewUserParam param) async {

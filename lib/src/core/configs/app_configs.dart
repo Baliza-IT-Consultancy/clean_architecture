@@ -22,3 +22,9 @@ BeamerDelegate get navigator => Beamer.of(AppConfig.appKey.currentContext!);
 /// Use this to get the active translations in the app.
 AppLocalizations get localization =>
     AppLocalizations.of(AppConfig.appKey.currentContext!);
+
+/// To get the currently active [ThemeData]
+ThemeData get theme => Theme.of(AppConfig.appKey.currentContext!);
+
+/// To get the currently active [TextTheme] from [ThemeData]
+TextTheme get textTheme => theme.textTheme;

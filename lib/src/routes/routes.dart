@@ -13,7 +13,7 @@ abstract class Routes {
   Routes._();
 
   /// Splash route `/`
-  static String get splash => '/*';
+  static String get splash => '/';
 
   /// Home route `/home`
   static String get home => '/home';
@@ -22,8 +22,8 @@ abstract class Routes {
   static String get auth => '/auth';
 
   /// Login route `/auth/login`
-  static String get login => auth + '/login';
+  static String get login => '/auth/login';
 
-  /// Sign up route `auth/sign_up`
-  static String get signup => auth + '/signup';
+  /// Sign up route `/auth/signup`
+  static String get signup => '/auth/signup';
 }

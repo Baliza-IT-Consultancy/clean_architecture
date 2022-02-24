@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 
 ///{@template not_found_page}
-///This page is shown when the intended route isn't found by the navigator.
-///{@endtemplate}
+/// Page that represent those routes which doesn't exists.
+/// It's used to handle 404 errors.
+/// {@endtemplate}
 class NotFoundPage extends StatelessWidget {
-  ///{@macro not_found_page}
-
+  /// {@macro not_found_page}
   const NotFoundPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Not Found'),
+      ),
       body: const Center(
-        child: Text("Page not found"),
+        child: Text("Page Not Found"),
       ),
     );
   }

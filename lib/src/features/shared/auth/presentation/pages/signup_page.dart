@@ -66,7 +66,8 @@ class _SignupPageState extends State<SignupPage> {
                     });
                   },
                   builder: (context, state) {
-                    /// If the form is in loading state, show a loading indicator.
+                    /// If the form is in loading state,
+                    /// show a loading indicator.
                     final loading = state.maybeWhen(
                       orElse: () => false,
                       initial: () => true,

@@ -4,13 +4,16 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/widgets.dart';
 
+import 'src/app/injection/injection.dart';
+import 'src/external/local_db.dart';
+
 /// Custom instance of [BlocObserver] which logs
 /// any state changes and errors.
 class AppBlocObserver extends BlocObserver {
   @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
-    super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
+    log('onTransition(${bloc.runtimeType}, $transition)');
   }
 
   @override
@@ -22,10 +25,14 @@ class AppBlocObserver extends BlocObserver {
 
 /// Bootstrap is responsible for any common setup and calls
 /// [runApp] with the widget returned by [builder] in an error zone.
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(
+    FutureOr<Widget> Function() builder, String environment) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
+
+  await LocalDatabase.getInstance().init();
+  await configureDependencies(environment: environment);
 
   await BlocOverrides.runZoned(
     () async => await runZonedGuarded(

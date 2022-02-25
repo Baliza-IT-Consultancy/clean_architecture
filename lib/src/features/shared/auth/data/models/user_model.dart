@@ -11,7 +11,11 @@ class UserModel extends User {
     required String id,
     String? name,
     String? email,
-  }) : super(id: id);
+  }) : super(
+          id: id,
+          name: name,
+          email: email,
+        );
 
   /// create a user from a map
   factory UserModel.fromMap(Map<String, dynamic> map) {

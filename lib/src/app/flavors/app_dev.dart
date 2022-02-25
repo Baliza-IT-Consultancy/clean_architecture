@@ -29,6 +29,7 @@ class DevApp extends StatelessWidget {
       child: BeamerProvider(
         routerDelegate: RouteManager.delegate,
         child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
             colorScheme: ColorScheme.fromSwatch(

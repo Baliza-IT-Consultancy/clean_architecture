@@ -14,15 +14,27 @@ class CustomNavigatorObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
-    log('PUSH: from: ${previousRoute?.settings.name}, '
-        'to: ${route.settings.name}');
+    log('PUSH: ${route.settings.name}');
   }
 
   @override
-  void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
+  void didRemove(Route route, Route? previousRoute) {
+    super.didRemove(route, previousRoute);
+    log("REMOVED: ${route.settings.name}");
+  }
+
+  @override
+  void didPop(Route route, Route? previousRoute) {
     super.didPop(route, previousRoute);
-    log('POP: from: ${previousRoute?.settings.name}, '
-        'to: ${route.settings.name}');
+    log("POP: ${route.settings.name}");
+  }
+
+  @override
+  void didReplace({Route? newRoute, Route? oldRoute}) {
+    super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
+    log('REPLACED: '
+        'from: ${oldRoute?.settings.name}, '
+        'to: ${newRoute?.settings.name}');
   }
 }
 

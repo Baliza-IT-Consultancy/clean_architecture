@@ -34,4 +34,13 @@ class SignupDTO {
 
   /// password of the user
   final String password;
+
+  /// serialize the object to json
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+      'email': email,
+      'password': password,
+    };
+  }
 }

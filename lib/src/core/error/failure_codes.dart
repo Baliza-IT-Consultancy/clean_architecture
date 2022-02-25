@@ -12,4 +12,11 @@ class FailureCodes {
 
   /// When the user is not loggedin and not in cache.
   static const String UNAUTHENTICATED = "2";
+
+  /// When the user already have an account and trying to
+  /// create a new account.
+  static const String USER_ALREADY_EXISTS = "3";
+
+  /// When the user is not in db.
+  static const String USER_DOES_NOT_EXISTS = "4";
 }

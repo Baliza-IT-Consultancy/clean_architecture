@@ -46,6 +46,10 @@
     "email": "Email",
     "@email": {
         "description": "The label for the email field"
+    },
+    "logout": "Logout",
+    "@logout": {
+        "description": "The text/tooltip of the logout button"
     }
 
 }

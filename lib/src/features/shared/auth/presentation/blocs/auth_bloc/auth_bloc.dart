@@ -57,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final result = await createNewUser(event.payload);
 
     result.fold(
-      (l) => emit(_Unauthenticated(l.message)),
+      (l) => emit(_Unauthenticated(l.message, l.code)),
       (r) => emit(_Authenticated(r)),
     );
   }
@@ -66,13 +66,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const _Initial());
     final result = await signInUser(event.payload);
     result.fold(
-      (l) => emit(AuthState.unauthenticated(l.message)),
+      (l) => emit(AuthState.unauthenticated(l.message, l.code)),
       (r) => emit(AuthState.authenticated(r)),
     );
   }
 
   FutureOr<void> _onStarted(_Started event, Emitter<AuthState> emit) async {
-    emit(const _Initial());
     final result = await isUserLoggedInUseCase(NoParams());
     result.fold(
       (l) => emit(_Unauthenticated(l.message, l.code)),

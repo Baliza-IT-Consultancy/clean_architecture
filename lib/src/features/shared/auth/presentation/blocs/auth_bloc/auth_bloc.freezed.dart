@@ -22,13 +22,13 @@ class _$AuthEventTearOff {
     return const _Started();
   }
 
-  _CreateAccount createAccount(SignupPayload payload) {
+  _CreateAccount createAccount(SignupDTO payload) {
     return _CreateAccount(
       payload,
     );
   }
 
-  _LoggedIn loggedIn(LoginPayload payload) {
+  _LoggedIn loggedIn(LoginDTO payload) {
     return _LoggedIn(
       payload,
     );
@@ -47,24 +47,24 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SignupPayload payload) createAccount,
-    required TResult Function(LoginPayload payload) loggedIn,
+    required TResult Function(SignupDTO payload) createAccount,
+    required TResult Function(LoginDTO payload) loggedIn,
     required TResult Function() loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) =>
@@ -150,8 +150,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SignupPayload payload) createAccount,
-    required TResult Function(LoginPayload payload) loggedIn,
+    required TResult Function(SignupDTO payload) createAccount,
+    required TResult Function(LoginDTO payload) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return started();
@@ -161,8 +161,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
   }) {
     return started?.call();
@@ -172,8 +172,8 @@ class _$_Started implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
@@ -230,7 +230,7 @@ abstract class _$CreateAccountCopyWith<$Res> {
   factory _$CreateAccountCopyWith(
           _CreateAccount value, $Res Function(_CreateAccount) then) =
       __$CreateAccountCopyWithImpl<$Res>;
-  $Res call({SignupPayload payload});
+  $Res call({SignupDTO payload});
 }
 
 /// @nodoc
@@ -251,7 +251,7 @@ class __$CreateAccountCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
       payload == freezed
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as SignupPayload,
+              as SignupDTO,
     ));
   }
 }
@@ -262,7 +262,7 @@ class _$_CreateAccount implements _CreateAccount {
   const _$_CreateAccount(this.payload);
 
   @override
-  final SignupPayload payload;
+  final SignupDTO payload;
 
   @override
   String toString() {
@@ -290,8 +290,8 @@ class _$_CreateAccount implements _CreateAccount {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SignupPayload payload) createAccount,
-    required TResult Function(LoginPayload payload) loggedIn,
+    required TResult Function(SignupDTO payload) createAccount,
+    required TResult Function(LoginDTO payload) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return createAccount(payload);
@@ -301,8 +301,8 @@ class _$_CreateAccount implements _CreateAccount {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
   }) {
     return createAccount?.call(payload);
@@ -312,8 +312,8 @@ class _$_CreateAccount implements _CreateAccount {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
@@ -362,9 +362,9 @@ class _$_CreateAccount implements _CreateAccount {
 }
 
 abstract class _CreateAccount implements AuthEvent {
-  const factory _CreateAccount(SignupPayload payload) = _$_CreateAccount;
+  const factory _CreateAccount(SignupDTO payload) = _$_CreateAccount;
 
-  SignupPayload get payload;
+  SignupDTO get payload;
   @JsonKey(ignore: true)
   _$CreateAccountCopyWith<_CreateAccount> get copyWith =>
       throw _privateConstructorUsedError;
@@ -374,7 +374,7 @@ abstract class _CreateAccount implements AuthEvent {
 abstract class _$LoggedInCopyWith<$Res> {
   factory _$LoggedInCopyWith(_LoggedIn value, $Res Function(_LoggedIn) then) =
       __$LoggedInCopyWithImpl<$Res>;
-  $Res call({LoginPayload payload});
+  $Res call({LoginDTO payload});
 }
 
 /// @nodoc
@@ -394,7 +394,7 @@ class __$LoggedInCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
       payload == freezed
           ? _value.payload
           : payload // ignore: cast_nullable_to_non_nullable
-              as LoginPayload,
+              as LoginDTO,
     ));
   }
 }
@@ -405,7 +405,7 @@ class _$_LoggedIn implements _LoggedIn {
   const _$_LoggedIn(this.payload);
 
   @override
-  final LoginPayload payload;
+  final LoginDTO payload;
 
   @override
   String toString() {
@@ -433,8 +433,8 @@ class _$_LoggedIn implements _LoggedIn {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SignupPayload payload) createAccount,
-    required TResult Function(LoginPayload payload) loggedIn,
+    required TResult Function(SignupDTO payload) createAccount,
+    required TResult Function(LoginDTO payload) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return loggedIn(payload);
@@ -444,8 +444,8 @@ class _$_LoggedIn implements _LoggedIn {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
   }) {
     return loggedIn?.call(payload);
@@ -455,8 +455,8 @@ class _$_LoggedIn implements _LoggedIn {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {
@@ -505,9 +505,9 @@ class _$_LoggedIn implements _LoggedIn {
 }
 
 abstract class _LoggedIn implements AuthEvent {
-  const factory _LoggedIn(LoginPayload payload) = _$_LoggedIn;
+  const factory _LoggedIn(LoginDTO payload) = _$_LoggedIn;
 
-  LoginPayload get payload;
+  LoginDTO get payload;
   @JsonKey(ignore: true)
   _$LoggedInCopyWith<_LoggedIn> get copyWith =>
       throw _privateConstructorUsedError;
@@ -553,8 +553,8 @@ class _$_LoggedOut implements _LoggedOut {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(SignupPayload payload) createAccount,
-    required TResult Function(LoginPayload payload) loggedIn,
+    required TResult Function(SignupDTO payload) createAccount,
+    required TResult Function(LoginDTO payload) loggedIn,
     required TResult Function() loggedOut,
   }) {
     return loggedOut();
@@ -564,8 +564,8 @@ class _$_LoggedOut implements _LoggedOut {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
   }) {
     return loggedOut?.call();
@@ -575,8 +575,8 @@ class _$_LoggedOut implements _LoggedOut {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(SignupPayload payload)? createAccount,
-    TResult Function(LoginPayload payload)? loggedIn,
+    TResult Function(SignupDTO payload)? createAccount,
+    TResult Function(LoginDTO payload)? loggedIn,
     TResult Function()? loggedOut,
     required TResult orElse(),
   }) {

@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/base/usecase.dart';
+import '../../../domain/dtos/auth_dtos.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../domain/usecases/create_new_user_usecase.dart';
 import '../../../domain/usecases/is_user_loggedin_usecase.dart';
@@ -27,28 +28,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     this.logOutUser,
   ) : super(const _Initial()) {
     on<_Started>(_onStarted);
-
     on<_LoggedIn>(_onLoggedIn);
-
     on<_LoggedOut>(_onLoggedOut);
-
     on<_CreateAccount>(_onCreateAccount);
   }
 
-  FutureOr<void> _onLoggedOut(event, emit) async {
+  FutureOr<void> _onLoggedOut(
+    _LoggedOut event,
+    Emitter<AuthState> emit,
+  ) async {
     emit(const _Initial());
     emit(const _Unauthenticated("Logged out"));
   }
 
-  FutureOr<void> _onCreateAccount(event, emit) async {
+  FutureOr<void> _onCreateAccount(
+      _CreateAccount event, Emitter<AuthState> emit) async {
     emit(const _Initial());
-    final result = await createNewUser(
-      IUserCreateParam(
-        email: event.payload.email,
-        password: event.payload.password,
-        name: event.payload.name,
-      ),
-    );
+    final result = await createNewUser(event.payload);
 
     result.fold(
       (l) => emit(_Unauthenticated(l.message)),
@@ -56,21 +52,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  FutureOr<void> _onLoggedIn(event, emit) async {
+  FutureOr<void> _onLoggedIn(_LoggedIn event, Emitter<AuthState> emit) async {
     emit(const _Initial());
-    final result = await signInUser(
-      IUserSignInParam(
-        email: event.payload.email,
-        password: event.payload.password,
-      ),
-    );
+    final result = await signInUser(event.payload);
     result.fold(
       (l) => emit(AuthState.unauthenticated(l.message)),
       (r) => emit(AuthState.authenticated(r)),
     );
   }
 
-  FutureOr<void> _onStarted(event, emit) async {
+  FutureOr<void> _onStarted(_Started event, Emitter<AuthState> emit) async {
     emit(const _Initial());
     final result = await isUserLoggedInUseCase(NoParams());
     result.fold(

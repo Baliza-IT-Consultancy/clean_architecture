@@ -92,7 +92,7 @@ class FormValidator {
   const FormValidator(this.validators);
 
   /// A list of [Validator]s.
-  final List<Validator> validators;
+  final List<Validator<dynamic>> validators;
 
   /// Validates the value by iterating through the [validators].
   String? call(String? value) {

@@ -10,6 +10,8 @@
 include: package:flutter_lints/flutter.yaml
 
 linter:
+
+ 
   # The lint rules applied to this project can be customized in the
   # section below to disable rules from the `package:flutter_lints/flutter.yaml`
   # included above or to enable additional rules. A list of all available lints
@@ -45,6 +47,14 @@ linter:
     use_string_buffers: true
     use_to_and_as_if_applicable: true
     prefer_relative_imports: true
+    await_only_futures: true
+    prefer_void_to_null: true
+    use_build_context_synchronously: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_bool_literals_in_conditional_expressions: true
+    avoid_catching_errors: true
+    avoid_field_initializers_in_const_classes: true
+
     
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule

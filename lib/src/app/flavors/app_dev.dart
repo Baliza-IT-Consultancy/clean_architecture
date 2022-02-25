@@ -7,6 +7,7 @@ import '../../core/configs/app_configs.dart';
 import '../../core/constants/constraints/constraints.dart';
 import '../../features/shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../routes/route_manager.dart';
+import '../../routes/routes.dart';
 import '../injection/injection.dart';
 
 /// {@template app_dev}
@@ -49,8 +50,19 @@ class DevApp extends StatelessWidget {
           backButtonDispatcher: BeamerBackButtonDispatcher(
             delegate: RouteManager.delegate,
           ),
-          builder: (context, child) => SizedBox(
+          builder: (context, child) => BlocListener<AuthBloc, AuthState>(
             key: AppConfig.appKey,
+            listener: (context, state) {
+              /// Top level listener for auth state
+              state.whenOrNull(
+                unauthenticated: (message) {
+                  navigator.popToNamed(Routes.auth);
+                },
+                authenticated: (_) {
+                  navigator.popToNamed(Routes.home);
+                },
+              );
+            },
             child: child,
           ),
         ),

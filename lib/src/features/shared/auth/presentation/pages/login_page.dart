@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import '../../../../../core/configs/app_configs.dart';
 import '../../../../../core/constants/constraints/constraints.dart';
 import '../../../../../core/utils/validators/validator.dart';
+import '../../domain/dtos/auth_dtos.dart';
 import '../blocs/auth_bloc/auth_bloc.dart';
 
 const _kMinPasswordLength = 6;
@@ -147,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
     if (formState.validate()) {
       context.read<AuthBloc>().add(
             AuthEvent.loggedIn(
-              LoginPayload(
+              LoginDTO(
                 email: _emailController.text,
                 password: _passwordController.text,
               ),

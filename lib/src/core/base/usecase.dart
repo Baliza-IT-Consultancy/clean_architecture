@@ -1,9 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
-import '../error/failures.dart';
+import 'type_defs.dart';
 
-/// Use this when [UseCase] don't need to take any arguments.
+/// Use this when [IUseCase] don't need to take any arguments.
 ///
 /// for example:
 ///
@@ -13,7 +13,7 @@ import '../error/failures.dart';
 ///
 ///   final TodoRepository repository;
 ///
-///   Future<Either<Failure, int>> call(NoParams params) {
+///   FailureOr<int> call(NoParams params) {
 ///     return repository.getAllTodo();
 ///   }
 /// }
@@ -42,7 +42,7 @@ class NoParams extends Equatable {
 ///   final LightValidator validator;
 ///
 ///   @override
-///   Future<Either<Failure, bool>> call(int lightId) {
+///   FailureOr<bool> call(int lightId) {
 ///
 ///     // Check if light id is correct.
 ///     final isValid = validator.isLightIdCorrect(lightId);
@@ -57,18 +57,26 @@ class NoParams extends Equatable {
 ///   }
 /// }
 /// ```
-/// See Also: [UseCaseSync]: A Sync [UseCase]
-abstract class UseCase<ReturnType, Params> {
+/// See Also: [IUseCaseSync]: A Sync [IUseCase]
+@immutable
+abstract class IUseCase<ReturnType, Params> {
+  /// {@macro src.core.base.usecase.UseCase}
+  const IUseCase();
+
   /// an override of `call` to execute this use case
-  Future<Either<Failure, ReturnType>> call(Params param);
+  FailureOr<ReturnType> call(Params param);
 }
 
-/// A Synchronous [UseCase]
+/// A Synchronous [IUseCase]
 ///
 /// {@macro src.core.base.usecase.UseCase}
 ///
-/// See More: [UseCase] : An Async UseCase
-abstract class UseCaseSync<ReturnType, Params> {
+/// See More: [IUseCase] : An Async UseCase
+@immutable
+abstract class IUseCaseSync<ReturnType, Params> {
+  /// {@macro src.core.base.usecase.UseCase}
+  const IUseCaseSync();
+
   /// an override of `call` to execute this use case
-  Either<Failure, ReturnType> call(Params param);
+  FailureOrSync<ReturnType> call(Params param);
 }

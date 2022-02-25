@@ -1,11 +1,12 @@
-/// {@template src.core.error.failures.Failure}
+/// {@template failure}
+///
 /// A client friendly wrapper around the [Exception] or [Error],
 /// `returned` from repositories in case of something bad happens while
 /// processing request.
-/// {@endtemplate}
 ///
+/// {@endtemplate}
 class Failure {
-  /// {@macro src.core.error.failures.Failure}
+  /// {@macro failure}
   Failure({
     required this.message,
     required this.code,

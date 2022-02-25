@@ -2,5 +2,50 @@
     "title": "A custom app title",
     "@title": {
         "description": "The title of the app"
+    },
+    "appName": "TODO",
+    "@appName": {
+        "description": "The name of the app"
+    },
+    "welcomeToMessage": "Welcome to",
+    "@welcomeToMessage": {
+        "description": "The welcome message"
+    },
+    "newUserText": "Are you a new user?",
+    "@newUserText": {
+        "description": "The text for the new user question"
+    },
+    "loginTitle": "Login to your account",
+    "@loginTitle": {
+        "description": "The title of the login page"
+    },
+    "login": "Login",
+    "@login": {
+        "description": "The text of the login button"
+    },
+    "createAccountTitle": "Create a new account",
+    "@createAccountTitle": {
+        "description": "The title of the create account screen"
+    },
+    "createAccount": "Create account",
+    "@createAccount": {
+        "description": "The text of the create account button"
+    },
+    "fullName": "Full Name",
+    "@fullName": {
+        "description": "The label for the full name field"
+    },
+    "password": "Password",
+    "@password": {
+        "description": "The label for the password field"
+    },
+    "passwordHelper": "Password must be at least 6 characters",
+    "@passwordHelper": {
+        "description": "The helper text for the password field"
+    },
+    "email": "Email",
+    "@email": {
+        "description": "The label for the email field"
     }
+
 }

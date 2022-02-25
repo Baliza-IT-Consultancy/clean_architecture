@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../features/shared/auth/presentation/pages/auth_selection_page.dart';
 import '../../features/shared/auth/presentation/pages/login_page.dart';
+import '../../features/shared/auth/presentation/pages/signup_page.dart';
 import '../routes.dart';
 
 /// Location of the Auth Module
@@ -32,7 +33,7 @@ class AuthLocation extends BeamLocation {
           key: ValueKey('Signup Page'),
           title: "Signup",
           name: "Signup Page",
-          child: Text("Signup Page"),
+          child: SignupPage(),
         )
     ];
   }

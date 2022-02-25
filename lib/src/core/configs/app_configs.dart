@@ -23,6 +23,12 @@ BeamerDelegate get navigator => Beamer.of(AppConfig.appKey.currentContext!);
 AppLocalizations get localization =>
     AppLocalizations.of(AppConfig.appKey.currentContext!);
 
+/// [ScaffoldMessenger] of the currently active app
+///
+/// Use this to show [SnackBar] or [MaterialBanner] in the app.
+ScaffoldMessengerState get messenger =>
+    ScaffoldMessenger.of(AppConfig.appKey.currentContext!);
+
 /// To get the currently active [ThemeData]
 ThemeData get theme => Theme.of(AppConfig.appKey.currentContext!);
 

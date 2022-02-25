@@ -8,11 +8,13 @@ import '../entities/user_entity.dart';
 
 /// {@template create_new_user_usecase}
 /// A [UseCase] to create a new user
+///
+/// Takes an argument of type [IUserCreateParam]
 /// {@endtemplate}
 @lazySingleton
-class CreateNewUser extends UseCase<User, ICreateNewUserParam> {
+class CreateNewUser extends UseCase<User, IUserCreateParam> {
   @override
-  Future<Either<Failure, User>> call(ICreateNewUserParam param) async {
+  Future<Either<Failure, User>> call(IUserCreateParam param) async {
     return Right(User.empty());
   }
 }
@@ -20,9 +22,9 @@ class CreateNewUser extends UseCase<User, ICreateNewUserParam> {
 /// {@template create_new_user_param}
 /// Param for [CreateNewUser]
 /// {@endtemplate}
-class ICreateNewUserParam extends Equatable {
+class IUserCreateParam extends Equatable {
   /// {@macro create_new_user_param}
-  const ICreateNewUserParam({
+  const IUserCreateParam({
     this.name,
     required this.email,
     required this.password,

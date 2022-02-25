@@ -11,36 +11,38 @@ const _kMinPasswordLength = 6;
 const _kMaxPasswordLength = 14;
 
 /// {@template login_page}
-/// Login Page with email and password field.
+/// Signup Page with email, password and a full name field.
 /// {@endtemplate}
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   /// {@macro login_page}
-  const LoginPage({Key? key}) : super(key: key);
+  const SignupPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   /// Holds the value of email text field.
   late TextEditingController _emailController;
 
-  /// Hold the value of password text field.
+  /// Holds the value of password text field.
   late TextEditingController _passwordController;
+
+  /// Holds the value of full name text field.
+  late TextEditingController _fullNameController;
 
   @override
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+    _fullNameController = TextEditingController();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-      ),
+      appBar: AppBar(elevation: 0),
       body: Padding(
         padding: const EdgeInsets.all(AppConstraints.largeSpace),
         child: Center(
@@ -50,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             child: Form(
               child: BlocConsumer<AuthBloc, AuthState>(
-                  key: const ValueKey("login_form_fields"),
+                  key: const ValueKey("signup_form_fields"),
                   listener: (context, state) {
                     /// If the state is [AuthState.unauthenticated]
                     /// then show the error message.
@@ -80,10 +82,22 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         Text(
-                          localization.loginTitle,
+                          localization.createAccountTitle,
                           style: textTheme.titleMedium,
                         ),
                         const Gap(AppConstraints.largeSpace),
+                        TextFormField(
+                          controller: _fullNameController,
+                          decoration: InputDecoration(
+                            labelText: localization.fullName,
+                          ),
+                          validator: const FormValidator([
+                            RequiredValidator(),
+                          ]),
+                          enabled: !loading,
+                          autofocus: true,
+                        ),
+                        const Gap(AppConstraints.mediumSpace),
                         TextFormField(
                           controller: _emailController,
                           decoration: InputDecoration(
@@ -94,7 +108,6 @@ class _LoginPageState extends State<LoginPage> {
                             EmailValidator(),
                           ]),
                           enabled: !loading,
-                          autofocus: true,
                         ),
                         const Gap(AppConstraints.mediumSpace),
                         TextFormField(
@@ -118,7 +131,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const Gap(AppConstraints.mediumSpace),
                         ElevatedButton(
-                          onPressed: loading ? null : () => _login(context),
+                          onPressed:
+                              loading ? null : () => _createAccount(context),
                           child: loading
                               ? const SizedBox.square(
                                   dimension: AppConstraints.largeSpace,
@@ -126,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                                     strokeWidth: 2,
                                   ),
                                 )
-                              : Text(localization.login),
+                              : Text(localization.createAccount),
                         ),
                       ],
                     );
@@ -138,15 +152,16 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _login(BuildContext context) {
+  void _createAccount(BuildContext context) {
     final formState = Form.of(context);
 
     if (formState == null) return;
 
     if (formState.validate()) {
       context.read<AuthBloc>().add(
-            AuthEvent.loggedIn(
-              LoginPayload(
+            AuthEvent.createAccount(
+              SignupPayload(
+                name: _fullNameController.text,
                 email: _emailController.text,
                 password: _passwordController.text,
               ),
@@ -157,6 +172,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
+    _fullNameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();

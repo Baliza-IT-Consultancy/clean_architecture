@@ -17,36 +17,44 @@ class AuthSelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "Welcome to",
-              style: textTheme.headline4,
-            ),
-            Text(
-              "TODO",
-              style: textTheme.headline1,
-            ),
-            Text(
-              "Login to access your account.",
-              style: textTheme.titleSmall,
-            ),
-            const Gap(AppConstraints.mediumGap),
-            ElevatedButton(
+        child: Padding(
+          padding: const EdgeInsets.all(
+            AppConstraints.largeSpace,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  localization.welcomeToMessage,
+                  style: textTheme.headline4,
+                ),
+              ),
+              FittedBox(
+                fit: BoxFit.fitWidth,
+                child: Text(
+                  localization.appName,
+                  style: textTheme.headline1,
+                ),
+              ),
+              const Gap(AppConstraints.mediumSpace),
+              ElevatedButton(
                 onPressed: () => navigator.beamToNamed(Routes.login),
-                child: const Text("Login")),
-            const Gap(AppConstraints.mediumGap),
-            Text(
-              "or Are you a new user?",
-              style: textTheme.titleSmall,
-            ),
-            const Gap(AppConstraints.mediumGap),
-            ElevatedButton(
-              onPressed: () => navigator.beamToNamed(Routes.signup),
-              child: const Text("Create Account"),
-            ),
-          ],
+                child: Text(localization.login),
+              ),
+              const Gap(AppConstraints.mediumSpace),
+              Text(
+                localization.newUserText,
+                style: textTheme.titleSmall,
+              ),
+              const Gap(AppConstraints.mediumSpace),
+              ElevatedButton(
+                onPressed: () => navigator.beamToNamed(Routes.signup),
+                child: Text(localization.createAccount),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -8,12 +8,17 @@ import '../entities/user_entity.dart';
 
 /// {@template sign_in_user_usecase}
 /// A [UseCase] to sign_in an existing user
+///
+/// Takes an argument of type [IUserSignInParam]
 /// {@endtemplate}
 @lazySingleton
 class SignInUser extends UseCase<User, IUserSignInParam> {
   @override
   Future<Either<Failure, User>> call(IUserSignInParam param) async {
-    return Right(User.empty());
+    await Future.delayed(const Duration(seconds: 2));
+
+    // return Right(User.empty());
+    return Left(Failure(message: "Something Went Wrong", code: "500"));
   }
 }
 

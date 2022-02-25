@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/configs/app_configs.dart';
-import '../../../../core/constants/constraints/constraints.dart';
 import '../../../shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 
 /// {@template home_page}

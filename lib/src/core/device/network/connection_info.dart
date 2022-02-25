@@ -2,14 +2,14 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 
 import 'network_info.dart';
 
-/// An abstract class which is used to check for the active connection status
+/// This is used to check for the active connection status
 /// of the app or the current connection type i.e, wifi, mobile, etc.
 ///
 /// See : [ConnectionInformationImpl] an implementation of this class.
-abstract class ConnectionInformation {
+abstract class IConnectionInfo {
   /// Checks the connection status of the device.
   ///
-  /// Note: you can use this along with [NetworkInformation.isConnected]
+  /// Note: you can use this along with [INetworkInfo.isConnected]
   /// to check for internet connection.
   Future<bool> get isConnected;
 
@@ -23,8 +23,8 @@ abstract class ConnectionInformation {
   Stream<bool> get onConnectedChange;
 }
 
-/// A concrete implementation of [ConnectionInformation]
-class ConnectionInformationImpl implements ConnectionInformation {
+/// A concrete implementation of [IConnectionInfo]
+class ConnectionInformationImpl implements IConnectionInfo {
   @override
   Future<bool> get isConnected async =>
       await currentConnection != ConnectivityResult.none;

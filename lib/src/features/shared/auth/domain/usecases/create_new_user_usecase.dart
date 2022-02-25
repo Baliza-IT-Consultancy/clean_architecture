@@ -23,6 +23,6 @@ class CreateNewUser extends IUseCase<User, SignupDTO> {
 
   @override
   FailureOr<User> call(SignupDTO param) async {
-    return Right(User.empty());
+    return await repository.createAccount(param);
   }
 }

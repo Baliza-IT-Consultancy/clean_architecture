@@ -10,6 +10,9 @@ abstract class AppConfig {
   ///
   /// used in [navigator] and [localization] shortcuts
   static final GlobalKey appKey = GlobalKey();
+
+  /// A flag to enable/disable exception logging
+  static bool logExceptions = true;
 }
 
 /// [BeamerDelegate] of the currently active app

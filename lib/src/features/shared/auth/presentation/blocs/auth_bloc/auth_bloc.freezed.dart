@@ -636,9 +636,10 @@ class _$AuthStateTearOff {
     return const _Initial();
   }
 
-  _Unauthenticated unauthenticated([String? message]) {
+  _Unauthenticated unauthenticated([String? message, String? code]) {
     return _Unauthenticated(
       message,
+      code,
     );
   }
 
@@ -657,21 +658,21 @@ mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? message) unauthenticated,
+    required TResult Function(String? message, String? code) unauthenticated,
     required TResult Function(User user) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) =>
@@ -754,7 +755,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? message) unauthenticated,
+    required TResult Function(String? message, String? code) unauthenticated,
     required TResult Function(User user) authenticated,
   }) {
     return initial();
@@ -764,7 +765,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
   }) {
     return initial?.call();
@@ -774,7 +775,7 @@ class _$_Initial implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
@@ -828,7 +829,7 @@ abstract class _$UnauthenticatedCopyWith<$Res> {
   factory _$UnauthenticatedCopyWith(
           _Unauthenticated value, $Res Function(_Unauthenticated) then) =
       __$UnauthenticatedCopyWithImpl<$Res>;
-  $Res call({String? message});
+  $Res call({String? message, String? code});
 }
 
 /// @nodoc
@@ -844,11 +845,16 @@ class __$UnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = freezed,
+    Object? code = freezed,
   }) {
     return _then(_Unauthenticated(
       message == freezed
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+      code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -857,14 +863,16 @@ class __$UnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Unauthenticated implements _Unauthenticated {
-  const _$_Unauthenticated([this.message]);
+  const _$_Unauthenticated([this.message, this.code]);
 
   @override
   final String? message;
+  @override
+  final String? code;
 
   @override
   String toString() {
-    return 'AuthState.unauthenticated(message: $message)';
+    return 'AuthState.unauthenticated(message: $message, code: $code)';
   }
 
   @override
@@ -872,12 +880,15 @@ class _$_Unauthenticated implements _Unauthenticated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _Unauthenticated &&
-            const DeepCollectionEquality().equals(other.message, message));
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.code, code));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(message));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(code));
 
   @JsonKey(ignore: true)
   @override
@@ -888,32 +899,32 @@ class _$_Unauthenticated implements _Unauthenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? message) unauthenticated,
+    required TResult Function(String? message, String? code) unauthenticated,
     required TResult Function(User user) authenticated,
   }) {
-    return unauthenticated(message);
+    return unauthenticated(message, code);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
   }) {
-    return unauthenticated?.call(message);
+    return unauthenticated?.call(message, code);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {
     if (unauthenticated != null) {
-      return unauthenticated(message);
+      return unauthenticated(message, code);
     }
     return orElse();
   }
@@ -954,9 +965,11 @@ class _$_Unauthenticated implements _Unauthenticated {
 }
 
 abstract class _Unauthenticated implements AuthState {
-  const factory _Unauthenticated([String? message]) = _$_Unauthenticated;
+  const factory _Unauthenticated([String? message, String? code]) =
+      _$_Unauthenticated;
 
   String? get message;
+  String? get code;
   @JsonKey(ignore: true)
   _$UnauthenticatedCopyWith<_Unauthenticated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1027,7 +1040,7 @@ class _$_Authenticated implements _Authenticated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(String? message) unauthenticated,
+    required TResult Function(String? message, String? code) unauthenticated,
     required TResult Function(User user) authenticated,
   }) {
     return authenticated(user);
@@ -1037,7 +1050,7 @@ class _$_Authenticated implements _Authenticated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
   }) {
     return authenticated?.call(user);
@@ -1047,7 +1060,7 @@ class _$_Authenticated implements _Authenticated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(String? message)? unauthenticated,
+    TResult Function(String? message, String? code)? unauthenticated,
     TResult Function(User user)? authenticated,
     required TResult orElse(),
   }) {

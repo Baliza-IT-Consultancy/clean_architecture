@@ -50,89 +50,94 @@ class _LoginPageState extends State<LoginPage> {
               maxWidth: AppConstraints.maxTextFieldWidth,
             ),
             child: Form(
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               child: BlocConsumer<AuthBloc, AuthState>(
-                  key: const ValueKey("login_form_fields"),
-                  listener: (context, state) {
-                    /// If the state is [AuthState.unauthenticated]
-                    /// then show the error message.
-                    state.whenOrNull(unauthenticated: (message) {
-                      if (message == null) return;
-                      messenger.showSnackBar(
-                        SnackBar(
-                          content: Text(message),
-                        ),
-                      );
-                    });
-                  },
-                  builder: (context, state) {
-                    /// If the form is in loading state, show a
-                    /// loading indicator.
-                    final loading = state.maybeWhen(
-                      orElse: () => false,
-                      initial: () => true,
+                key: const ValueKey("login_form_fields"),
+                listener: (context, state) {
+                  /// If the state is [AuthState.unauthenticated]
+                  /// then show the error message.
+                  state.whenOrNull(unauthenticated: (message, code) {
+                    if (message == null) return;
+                    messenger.showSnackBar(
+                      SnackBar(
+                        content: Text(message),
+                      ),
                     );
+                  });
+                },
+                builder: (context, state) {
+                  /// If the form is in loading state, show a
+                  /// loading indicator.
+                  final loading = state.maybeWhen(
+                    orElse: () => false,
+                    initial: () => true,
+                  );
 
-                    return Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          localization.appName,
-                          style: textTheme.headline2?.copyWith(
-                            fontWeight: FontWeight.w100,
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        localization.appName,
+                        style: textTheme.headline2?.copyWith(
+                          fontWeight: FontWeight.w100,
+                        ),
+                      ),
+                      Text(
+                        localization.loginTitle,
+                        style: textTheme.titleMedium,
+                      ),
+                      const Gap(AppConstraints.largeSpace),
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          labelText: localization.email,
+                        ),
+                        textInputAction: TextInputAction.next,
+                        validator: const FormValidator([
+                          RequiredValidator(),
+                          EmailValidator(),
+                        ]),
+                        enabled: !loading,
+                        autofocus: true,
+                      ),
+                      const Gap(AppConstraints.mediumSpace),
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: InputDecoration(
+                          labelText: localization.password,
+                          helperText: localization.passwordHelper,
+                        ),
+                        maxLength: _kMaxPasswordLength,
+                        obscureText: true,
+                        onFieldSubmitted: (_) => _login(context),
+                        textInputAction: TextInputAction.done,
+                        validator: const FormValidator([
+                          RequiredValidator(),
+                          MinimumLengthValidator(
+                            minLength: _kMinPasswordLength,
                           ),
-                        ),
-                        Text(
-                          localization.loginTitle,
-                          style: textTheme.titleMedium,
-                        ),
-                        const Gap(AppConstraints.largeSpace),
-                        TextFormField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: localization.email,
+                          MaximumLengthValidator(
+                            maxLength: _kMaxPasswordLength,
                           ),
-                          validator: const FormValidator([
-                            RequiredValidator(),
-                            EmailValidator(),
-                          ]),
-                          enabled: !loading,
-                          autofocus: true,
-                        ),
-                        const Gap(AppConstraints.mediumSpace),
-                        TextFormField(
-                          controller: _passwordController,
-                          decoration: InputDecoration(
-                            labelText: localization.password,
-                            helperText: localization.passwordHelper,
-                          ),
-                          maxLength: _kMaxPasswordLength,
-                          obscureText: true,
-                          validator: const FormValidator([
-                            RequiredValidator(),
-                            MinimumLengthValidator(
-                              minLength: _kMinPasswordLength,
-                            ),
-                            MaximumLengthValidator(
-                              maxLength: _kMaxPasswordLength,
-                            ),
-                          ]),
-                          enabled: !loading,
-                        ),
-                        const Gap(AppConstraints.mediumSpace),
-                        ElevatedButton(
-                          onPressed: loading ? null : () => _login(context),
-                          child: loading
-                              ? const SizedBox.square(
-                                  dimension: AppConstraints.largeSpace,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : Text(localization.login),
-                        ),
-                      ],
-                    );
-                  }),
+                        ]),
+                        enabled: !loading,
+                      ),
+                      const Gap(AppConstraints.mediumSpace),
+                      ElevatedButton(
+                        onPressed: loading ? null : () => _login(context),
+                        child: loading
+                            ? const SizedBox.square(
+                                dimension: AppConstraints.largeSpace,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              )
+                            : Text(localization.login),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ),

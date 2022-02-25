@@ -57,7 +57,7 @@ class _SignupPageState extends State<SignupPage> {
                   listener: (context, state) {
                     /// If the state is [AuthState.unauthenticated]
                     /// then show the error message.
-                    state.whenOrNull(unauthenticated: (message) {
+                    state.whenOrNull(unauthenticated: (message, code) {
                       if (message == null) return;
                       messenger.showSnackBar(
                         SnackBar(
@@ -93,6 +93,7 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                             labelText: localization.fullName,
                           ),
+                          textInputAction: TextInputAction.next,
                           validator: const FormValidator([
                             RequiredValidator(),
                           ]),
@@ -105,6 +106,7 @@ class _SignupPageState extends State<SignupPage> {
                           decoration: InputDecoration(
                             labelText: localization.email,
                           ),
+                          textInputAction: TextInputAction.next,
                           validator: const FormValidator([
                             RequiredValidator(),
                             EmailValidator(),
@@ -120,6 +122,8 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                           maxLength: _kMaxPasswordLength,
                           obscureText: true,
+                          onFieldSubmitted: (_) => _createAccount(context),
+                          textInputAction: TextInputAction.done,
                           validator: const FormValidator([
                             RequiredValidator(),
                             MinimumLengthValidator(

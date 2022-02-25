@@ -9,11 +9,11 @@ abstract class IAuthRepository {
 
   /// checks if there is any logged in user and returns it
   /// else returns `null`.
-  FailureOr<User?> isUserLoggedIn();
+  FailureOr<User> isUserLoggedIn();
 
   /// logs out the currently logged in user.
-  FailureOr<void> logout();
+  FailureOr<void> logoutUser();
 
   /// logs in the user using the given [email] and [password].
-  FailureOr<User> signIn(LoginDTO loginDTO);
+  FailureOr<User> loginUser(LoginDTO loginDTO);
 }

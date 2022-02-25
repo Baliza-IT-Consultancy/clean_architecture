@@ -24,11 +24,6 @@ class SignInUser extends IUseCase<User, LoginDTO> {
 
   @override
   FailureOr<User> call(LoginDTO param) async {
-    await Future.delayed(const Duration(seconds: 2));
-
-    final result = await repository.signIn(param);
-
-    // return Right(User.empty());
-    return Left(Failure(message: "Something Went Wrong", code: "500"));
+    return await repository.loginUser(param);
   }
 }

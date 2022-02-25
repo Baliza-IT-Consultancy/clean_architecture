@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../../core/base/usecase.dart';
+import '../../../../../../core/error/failure_codes.dart';
 import '../../../domain/dtos/auth_dtos.dart';
 import '../../../domain/entities/user_entity.dart';
 import '../../../domain/usecases/create_new_user_usecase.dart';
@@ -38,7 +39,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(const _Initial());
-    emit(const _Unauthenticated("Logged out"));
+    final result = await logOutUser(NoParams());
+    result.fold(
+      (l) => emit(_Unauthenticated(l.message, l.code)),
+      (r) => emit(
+        const _Unauthenticated(
+          'logged out successfully',
+          FailureCodes.UNAUTHENTICATED,
+        ),
+      ),
+    );
   }
 
   FutureOr<void> _onCreateAccount(
@@ -65,7 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(const _Initial());
     final result = await isUserLoggedInUseCase(NoParams());
     result.fold(
-      (l) => emit(_Unauthenticated(l.message)),
+      (l) => emit(_Unauthenticated(l.message, l.code)),
       (r) => emit(_Authenticated(r)),
     );
   }

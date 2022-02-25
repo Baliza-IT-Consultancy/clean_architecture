@@ -21,11 +21,6 @@ class IsUserLoggedIn implements IUseCase<User, NoParams> {
 
   @override
   FailureOr<User> call(NoParams params) async {
-    // return await repository.isUserLoggedIn();
-    await Future<dynamic>.delayed(const Duration(seconds: 1));
-    // return Right(User.empty());
-    return Left(
-      Failure(message: "User not authenticated", code: "UNAUTHORIZED"),
-    );
+    return await repository.isUserLoggedIn();
   }
 }

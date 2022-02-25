@@ -9,7 +9,7 @@ import '../repositories/auth_repository.dart';
 /// Log out currently logged in user
 /// {@endtemplate}
 @lazySingleton
-class LogOutUser implements IUseCase<bool, NoParams> {
+class LogOutUser implements IUseCase<void, NoParams> {
   /// {@macro logout_usecase}
   const LogOutUser(this.repository);
 
@@ -17,8 +17,7 @@ class LogOutUser implements IUseCase<bool, NoParams> {
   final IAuthRepository repository;
 
   @override
-  FailureOr<bool> call(NoParams param) async {
-    await Future<dynamic>.delayed(const Duration(seconds: 5));
-    return const Right(true);
+  FailureOr<void> call(NoParams param) async {
+    return await repository.logoutUser();
   }
 }

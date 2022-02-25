@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../core/configs/app_configs.dart';
 import '../../core/constants/constraints/constraints.dart';
+import '../../core/error/failure_codes.dart';
 import '../../features/shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
 import '../../routes/route_manager.dart';
 import '../../routes/routes.dart';
@@ -55,8 +56,10 @@ class DevApp extends StatelessWidget {
             listener: (context, state) {
               /// Top level listener for auth state
               state.whenOrNull(
-                unauthenticated: (message) {
-                  navigator.popToNamed(Routes.auth);
+                unauthenticated: (message, code) {
+                  if (code == FailureCodes.UNAUTHENTICATED) {
+                    navigator.popToNamed(Routes.auth);
+                  }
                 },
                 authenticated: (_) {
                   navigator.popToNamed(Routes.home);

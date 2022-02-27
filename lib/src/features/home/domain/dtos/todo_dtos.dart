@@ -31,6 +31,7 @@ class TodoDTO {
 
   @override
   String toString() {
-    return 'TodoDTO(id: $id, title: $title, description: $description, completed: $completed)';
+    return 'TodoDTO(id: $id, title: $title, description: $description,'
+        ' completed: $completed)';
   }
 }

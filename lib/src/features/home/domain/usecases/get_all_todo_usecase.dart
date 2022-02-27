@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/base/type_defs.dart';

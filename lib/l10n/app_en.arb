@@ -78,5 +78,25 @@
     "isTodoCompleted": "Is Todo Completed?",
     "@isTodoCompleted": {
         "description": "The label for the 'is todo completed' field"
+    },
+    "sortTodo": "Sort Todos",
+    "@sortTodo": {
+        "description": "The text/tooltip for the sort todos button"
+    },
+    "filterTodo": "Filter Todos",
+    "@filterTodo": {
+        "description": "The text/tooltip for the filter todos button"
+    },
+    "all": "All",
+    "@all": {
+        "description": "The text for the all filter"
+    },
+    "active": "Active",
+    "@active": {
+        "description": "The text for the active filter"
+    },
+    "completed": "Completed",
+    "@completed": {
+        "description": "The text for the completed filter"
     }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../app/injection/injection.dart';
 import '../../../core/utils/convertors/route_information_to_uri.dart';
 import '../presentation/blocs/todo_bloc/todo_bloc.dart';
+import '../presentation/blocs/todo_filter/todo_filter_bloc.dart';
 import '../presentation/pages/home_page.dart';
 import '../presentation/pages/splash_page.dart';
 
@@ -29,8 +30,15 @@ class HomeLocation extends BeamLocation {
           key: const ValueKey("Home Page"),
           name: 'Home',
           title: 'Home Page',
-          child: BlocProvider<TodoBloc>(
-            create: (context) => sl()..add(const TodoEvent.load()),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider<TodoBloc>(
+                create: (context) => sl()..add(const TodoEvent.load()),
+              ),
+              BlocProvider<TodoFilterBloc>(
+                create: (context) => sl(),
+              ),
+            ],
             child: const HomePage(),
           ),
         ),

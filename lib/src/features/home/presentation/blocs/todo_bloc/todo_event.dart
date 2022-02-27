@@ -14,4 +14,7 @@ class TodoEvent with _$TodoEvent {
 
   /// An event to update a [Todo]
   const factory TodoEvent.updateTodo(TodoDTO todo) = _UpdateTodo;
+
+  /// An event to toggle sort type [Todo]s
+  const factory TodoEvent.toggleSort() = _SortTodos;
 }

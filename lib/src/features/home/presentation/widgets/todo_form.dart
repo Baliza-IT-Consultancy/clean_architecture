@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 
 import '../../../../core/configs/app_configs.dart';
 import '../../../../core/constants/constraints/constraints.dart';
+import '../../../../core/utils/validators/validator.dart';
 import '../../domain/dtos/todo_dtos.dart';
 import '../../domain/entities/todo.dart';
 import '../blocs/todo_bloc/todo_bloc.dart';
@@ -86,6 +87,13 @@ class _TodoFormViewState extends State<TodoFormView> {
                           labelText: localization.todoTitle,
                         ),
                         textInputAction: TextInputAction.next,
+                        validator: const FormValidator(
+                          [
+                            MaximumLengthValidator(
+                              maxLength: AppConstraints.maxTodoTitleLength,
+                            ),
+                          ],
+                        ),
                       ),
                       const Gap(AppConstraints.mediumSpace),
                       Flexible(
@@ -96,9 +104,18 @@ class _TodoFormViewState extends State<TodoFormView> {
                           ),
                           textInputAction: TextInputAction.done,
                           onFieldSubmitted:
-                              isForUpdate ? null : (_) => _submit(),
+                              isForUpdate ? null : (_) => _submit(context),
                           minLines: 5,
                           maxLines: 8,
+                          validator: const FormValidator(
+                            [
+                              RequiredValidator(),
+                              MaximumLengthValidator(
+                                maxLength:
+                                    AppConstraints.maxTodoDescriptionLength,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       if (isForUpdate) ...[
@@ -118,7 +135,7 @@ class _TodoFormViewState extends State<TodoFormView> {
                             child: Text(localization.cancel),
                           ),
                           ElevatedButton(
-                            onPressed: _submit,
+                            onPressed: () => _submit(context),
                             child: Text(action),
                           ),
                         ],
@@ -134,21 +151,24 @@ class _TodoFormViewState extends State<TodoFormView> {
     );
   }
 
-  void _submit() {
-    final todo = TodoDTO(
-      id: isForUpdate ? widget.todo!.id : null,
-      title: _titleController.text,
-      description: _descriptionController.text,
-      completed: _isCompleted,
-    );
+  void _submit(BuildContext context) {
+    final formState = Form.of(context)!;
+    if (formState.validate()) {
+      final todo = TodoDTO(
+        id: isForUpdate ? widget.todo!.id : null,
+        title: _titleController.text,
+        description: _descriptionController.text,
+        completed: _isCompleted,
+      );
 
-    if (isForUpdate) {
-      context.read<TodoBloc>().add(TodoEvent.updateTodo(todo));
-    } else {
-      context.read<TodoBloc>().add(TodoEvent.addTodo(todo));
+      if (isForUpdate) {
+        context.read<TodoBloc>().add(TodoEvent.updateTodo(todo));
+      } else {
+        context.read<TodoBloc>().add(TodoEvent.addTodo(todo));
+      }
+
+      Navigator.pop(context, todo);
     }
-
-    Navigator.pop(context, todo);
   }
 
   void _cancel() {

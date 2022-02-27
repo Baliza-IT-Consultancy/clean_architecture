@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../../core/base/usecase.dart';
+import '../../../../../core/constants/enums/enums.dart';
 import '../../../../../core/error/failures.dart';
 import '../../../domain/dtos/todo_dtos.dart';
 import '../../../domain/entities/todo.dart';
@@ -34,7 +35,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
           status: TodoStatus.error,
         )),
         (r) => emit(state.copyWith(
-          todos: r,
+          todos: r.sorted(_sortCompare(state.sort)),
           status: TodoStatus.loaded,
         )),
       );
@@ -52,7 +53,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         ),
         (r) => emit(
           state.copyWith(
-            todos: [...state.todos, r],
+            todos: [...state.todos, r].sorted(_sortCompare(state.sort)),
             status: TodoStatus.loaded,
           ),
         ),
@@ -77,7 +78,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
               ...state.todos.take(index),
               r,
               ...state.todos.skip(index + 1),
-            ],
+            ].sorted(_sortCompare(state.sort)),
             status: TodoStatus.loaded,
           ),
         ),
@@ -100,12 +101,25 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
             todos: [
               ...state.todos.take(index),
               ...state.todos.skip(index + 1),
-            ],
+            ].sorted(_sortCompare(state.sort)),
             status: TodoStatus.loaded,
           ),
         ),
       );
     });
+
+    on<_SortTodos>(
+      (event, emit) {
+        final nextSort = state.sort == TodoSortType.completed
+            ? TodoSortType.date
+            : TodoSortType.completed;
+
+        emit(state.copyWith(
+          todos: state.todos.sorted(_sortCompare(nextSort)),
+          sort: nextSort,
+        ));
+      },
+    );
   }
 
   /// {@macro add_update_todo_usecase}
@@ -116,4 +130,17 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
 
   /// {@macro get_all_todos_usecase}
   final GetAllTodo getAllTodo;
+
+  int Function(Todo a, Todo b) _sortCompare(TodoSortType sort) {
+    switch (sort) {
+      case TodoSortType.completed:
+        {
+          return (a, b) => a.completed ? 1 : -1;
+        }
+      default:
+        {
+          return (a, b) => a.createdAt.compareTo(b.createdAt);
+        }
+    }
+  }
 }

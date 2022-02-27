@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../features/home/domain/entities/todo.dart';
+
 /// Contains constraints for the app.
 abstract class AppConstraints {
   AppConstraints._();
@@ -30,4 +32,10 @@ abstract class AppConstraints {
 
   /// This is border radius of [TextField] or [TextFormField]
   static const double inputFieldOutlineBorderRadius = 10.0;
+
+  /// This is maximum length of a [Todo] title.
+  static const int maxTodoTitleLength = 40;
+
+  /// This is maximum length of a [Todo] description.
+  static const int maxTodoDescriptionLength = 40;
 }

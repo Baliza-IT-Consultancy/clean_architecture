@@ -38,6 +38,10 @@ class _$TodoEventTearOff {
       todo,
     );
   }
+
+  _SortTodos toggleSort() {
+    return const _SortTodos();
+  }
 }
 
 /// @nodoc
@@ -51,6 +55,7 @@ mixin _$TodoEvent {
     required TResult Function(TodoDTO todo) addTodo,
     required TResult Function(String todoId) removeTodo,
     required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +64,7 @@ mixin _$TodoEvent {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,6 +73,7 @@ mixin _$TodoEvent {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +83,7 @@ mixin _$TodoEvent {
     required TResult Function(_AddTodo value) addTodo,
     required TResult Function(_RemoveTodo value) removeTodo,
     required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -84,6 +92,7 @@ mixin _$TodoEvent {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,6 +101,7 @@ mixin _$TodoEvent {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +170,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     required TResult Function(TodoDTO todo) addTodo,
     required TResult Function(String todoId) removeTodo,
     required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
   }) {
     return load();
   }
@@ -171,6 +182,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
   }) {
     return load?.call();
   }
@@ -182,6 +194,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -197,6 +210,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     required TResult Function(_AddTodo value) addTodo,
     required TResult Function(_RemoveTodo value) removeTodo,
     required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
   }) {
     return load(this);
   }
@@ -208,6 +222,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
   }) {
     return load?.call(this);
   }
@@ -219,6 +234,7 @@ class _$_Started with DiagnosticableTreeMixin implements _Started {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -306,6 +322,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     required TResult Function(TodoDTO todo) addTodo,
     required TResult Function(String todoId) removeTodo,
     required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
   }) {
     return addTodo(todo);
   }
@@ -317,6 +334,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
   }) {
     return addTodo?.call(todo);
   }
@@ -328,6 +346,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
     required TResult orElse(),
   }) {
     if (addTodo != null) {
@@ -343,6 +362,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     required TResult Function(_AddTodo value) addTodo,
     required TResult Function(_RemoveTodo value) removeTodo,
     required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
   }) {
     return addTodo(this);
   }
@@ -354,6 +374,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
   }) {
     return addTodo?.call(this);
   }
@@ -365,6 +386,7 @@ class _$_AddTodo with DiagnosticableTreeMixin implements _AddTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
     required TResult orElse(),
   }) {
     if (addTodo != null) {
@@ -459,6 +481,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     required TResult Function(TodoDTO todo) addTodo,
     required TResult Function(String todoId) removeTodo,
     required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
   }) {
     return removeTodo(todoId);
   }
@@ -470,6 +493,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
   }) {
     return removeTodo?.call(todoId);
   }
@@ -481,6 +505,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
     required TResult orElse(),
   }) {
     if (removeTodo != null) {
@@ -496,6 +521,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     required TResult Function(_AddTodo value) addTodo,
     required TResult Function(_RemoveTodo value) removeTodo,
     required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
   }) {
     return removeTodo(this);
   }
@@ -507,6 +533,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
   }) {
     return removeTodo?.call(this);
   }
@@ -518,6 +545,7 @@ class _$_RemoveTodo with DiagnosticableTreeMixin implements _RemoveTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
     required TResult orElse(),
   }) {
     if (removeTodo != null) {
@@ -612,6 +640,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     required TResult Function(TodoDTO todo) addTodo,
     required TResult Function(String todoId) removeTodo,
     required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
   }) {
     return updateTodo(todo);
   }
@@ -623,6 +652,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
   }) {
     return updateTodo?.call(todo);
   }
@@ -634,6 +664,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     TResult Function(TodoDTO todo)? addTodo,
     TResult Function(String todoId)? removeTodo,
     TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
     required TResult orElse(),
   }) {
     if (updateTodo != null) {
@@ -649,6 +680,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     required TResult Function(_AddTodo value) addTodo,
     required TResult Function(_RemoveTodo value) removeTodo,
     required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
   }) {
     return updateTodo(this);
   }
@@ -660,6 +692,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
   }) {
     return updateTodo?.call(this);
   }
@@ -671,6 +704,7 @@ class _$_UpdateTodo with DiagnosticableTreeMixin implements _UpdateTodo {
     TResult Function(_AddTodo value)? addTodo,
     TResult Function(_RemoveTodo value)? removeTodo,
     TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
     required TResult orElse(),
   }) {
     if (updateTodo != null) {
@@ -690,15 +724,144 @@ abstract class _UpdateTodo implements TodoEvent {
 }
 
 /// @nodoc
+abstract class _$SortTodosCopyWith<$Res> {
+  factory _$SortTodosCopyWith(
+          _SortTodos value, $Res Function(_SortTodos) then) =
+      __$SortTodosCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$SortTodosCopyWithImpl<$Res> extends _$TodoEventCopyWithImpl<$Res>
+    implements _$SortTodosCopyWith<$Res> {
+  __$SortTodosCopyWithImpl(_SortTodos _value, $Res Function(_SortTodos) _then)
+      : super(_value, (v) => _then(v as _SortTodos));
+
+  @override
+  _SortTodos get _value => super._value as _SortTodos;
+}
+
+/// @nodoc
+
+class _$_SortTodos with DiagnosticableTreeMixin implements _SortTodos {
+  const _$_SortTodos();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'TodoEvent.toggleSort()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'TodoEvent.toggleSort'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _SortTodos);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(TodoDTO todo) addTodo,
+    required TResult Function(String todoId) removeTodo,
+    required TResult Function(TodoDTO todo) updateTodo,
+    required TResult Function() toggleSort,
+  }) {
+    return toggleSort();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TodoDTO todo)? addTodo,
+    TResult Function(String todoId)? removeTodo,
+    TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
+  }) {
+    return toggleSort?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(TodoDTO todo)? addTodo,
+    TResult Function(String todoId)? removeTodo,
+    TResult Function(TodoDTO todo)? updateTodo,
+    TResult Function()? toggleSort,
+    required TResult orElse(),
+  }) {
+    if (toggleSort != null) {
+      return toggleSort();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) load,
+    required TResult Function(_AddTodo value) addTodo,
+    required TResult Function(_RemoveTodo value) removeTodo,
+    required TResult Function(_UpdateTodo value) updateTodo,
+    required TResult Function(_SortTodos value) toggleSort,
+  }) {
+    return toggleSort(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Started value)? load,
+    TResult Function(_AddTodo value)? addTodo,
+    TResult Function(_RemoveTodo value)? removeTodo,
+    TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
+  }) {
+    return toggleSort?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? load,
+    TResult Function(_AddTodo value)? addTodo,
+    TResult Function(_RemoveTodo value)? removeTodo,
+    TResult Function(_UpdateTodo value)? updateTodo,
+    TResult Function(_SortTodos value)? toggleSort,
+    required TResult orElse(),
+  }) {
+    if (toggleSort != null) {
+      return toggleSort(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SortTodos implements TodoEvent {
+  const factory _SortTodos() = _$_SortTodos;
+}
+
+/// @nodoc
 class _$TodoStateTearOff {
   const _$TodoStateTearOff();
 
   _TodoState call(
       {TodoStatus status = TodoStatus.initial,
+      TodoSortType sort = TodoSortType.date,
       List<Todo> todos = const [],
       Failure? failure}) {
     return _TodoState(
       status: status,
+      sort: sort,
       todos: todos,
       failure: failure,
     );
@@ -711,6 +874,7 @@ const $TodoState = _$TodoStateTearOff();
 /// @nodoc
 mixin _$TodoState {
   TodoStatus get status => throw _privateConstructorUsedError;
+  TodoSortType get sort => throw _privateConstructorUsedError;
   List<Todo> get todos => throw _privateConstructorUsedError;
   Failure? get failure => throw _privateConstructorUsedError;
 
@@ -723,7 +887,11 @@ mixin _$TodoState {
 abstract class $TodoStateCopyWith<$Res> {
   factory $TodoStateCopyWith(TodoState value, $Res Function(TodoState) then) =
       _$TodoStateCopyWithImpl<$Res>;
-  $Res call({TodoStatus status, List<Todo> todos, Failure? failure});
+  $Res call(
+      {TodoStatus status,
+      TodoSortType sort,
+      List<Todo> todos,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -737,6 +905,7 @@ class _$TodoStateCopyWithImpl<$Res> implements $TodoStateCopyWith<$Res> {
   @override
   $Res call({
     Object? status = freezed,
+    Object? sort = freezed,
     Object? todos = freezed,
     Object? failure = freezed,
   }) {
@@ -745,6 +914,10 @@ class _$TodoStateCopyWithImpl<$Res> implements $TodoStateCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as TodoStatus,
+      sort: sort == freezed
+          ? _value.sort
+          : sort // ignore: cast_nullable_to_non_nullable
+              as TodoSortType,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
@@ -763,7 +936,11 @@ abstract class _$TodoStateCopyWith<$Res> implements $TodoStateCopyWith<$Res> {
           _TodoState value, $Res Function(_TodoState) then) =
       __$TodoStateCopyWithImpl<$Res>;
   @override
-  $Res call({TodoStatus status, List<Todo> todos, Failure? failure});
+  $Res call(
+      {TodoStatus status,
+      TodoSortType sort,
+      List<Todo> todos,
+      Failure? failure});
 }
 
 /// @nodoc
@@ -778,6 +955,7 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = freezed,
+    Object? sort = freezed,
     Object? todos = freezed,
     Object? failure = freezed,
   }) {
@@ -786,6 +964,10 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as TodoStatus,
+      sort: sort == freezed
+          ? _value.sort
+          : sort // ignore: cast_nullable_to_non_nullable
+              as TodoSortType,
       todos: todos == freezed
           ? _value.todos
           : todos // ignore: cast_nullable_to_non_nullable
@@ -802,12 +984,18 @@ class __$TodoStateCopyWithImpl<$Res> extends _$TodoStateCopyWithImpl<$Res>
 
 class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
   _$_TodoState(
-      {this.status = TodoStatus.initial, this.todos = const [], this.failure})
+      {this.status = TodoStatus.initial,
+      this.sort = TodoSortType.date,
+      this.todos = const [],
+      this.failure})
       : super._();
 
   @JsonKey()
   @override
   final TodoStatus status;
+  @JsonKey()
+  @override
+  final TodoSortType sort;
   @JsonKey()
   @override
   final List<Todo> todos;
@@ -816,7 +1004,7 @@ class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TodoState(status: $status, todos: $todos, failure: $failure)';
+    return 'TodoState(status: $status, sort: $sort, todos: $todos, failure: $failure)';
   }
 
   @override
@@ -825,6 +1013,7 @@ class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'TodoState'))
       ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('sort', sort))
       ..add(DiagnosticsProperty('todos', todos))
       ..add(DiagnosticsProperty('failure', failure));
   }
@@ -835,6 +1024,7 @@ class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is _TodoState &&
             const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.sort, sort) &&
             const DeepCollectionEquality().equals(other.todos, todos) &&
             const DeepCollectionEquality().equals(other.failure, failure));
   }
@@ -843,6 +1033,7 @@ class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(sort),
       const DeepCollectionEquality().hash(todos),
       const DeepCollectionEquality().hash(failure));
 
@@ -853,12 +1044,17 @@ class _$_TodoState extends _TodoState with DiagnosticableTreeMixin {
 }
 
 abstract class _TodoState extends TodoState {
-  factory _TodoState({TodoStatus status, List<Todo> todos, Failure? failure}) =
-      _$_TodoState;
+  factory _TodoState(
+      {TodoStatus status,
+      TodoSortType sort,
+      List<Todo> todos,
+      Failure? failure}) = _$_TodoState;
   _TodoState._() : super._();
 
   @override
   TodoStatus get status;
+  @override
+  TodoSortType get sort;
   @override
   List<Todo> get todos;
   @override

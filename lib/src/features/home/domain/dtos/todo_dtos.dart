@@ -8,10 +8,7 @@ class TodoDTO {
     this.title,
     this.description,
     this.completed,
-  }) : assert(
-          id == null && description != null,
-          'id and description cannot be null at the same time',
-        );
+  });
 
   /// The [id] of the [Todo] to update
   ///

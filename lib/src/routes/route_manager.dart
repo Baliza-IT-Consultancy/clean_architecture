@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
+import '../features/home/routes/location.dart';
+import '../features/shared/auth/routes/location.dart';
 import '../features/shared/errors/presentation/pages/not_found_page.dart';
-import 'locations/auth_location.dart';
-import 'locations/home_location.dart';
 
 /// A Route Observer that logs the route changes.
 ///

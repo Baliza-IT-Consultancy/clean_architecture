@@ -32,7 +32,7 @@ Future<void> bootstrap(
   };
 
   await LocalDatabase.getInstance().init();
-  await configureDependencies(environment: environment);
+  configureDependencies(environment: environment);
 
   await BlocOverrides.runZoned(
     () async => await runZonedGuarded(

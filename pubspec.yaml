@@ -59,11 +59,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
+  flutter_lints: ^1.0.4
   build_runner: ^2.1.7
-  injectable_generator: ^1.5.3
-  freezed: ^1.1.1
+  injectable_generator: 
+  freezed: ">=1.0.0 <1.1.1"
 
+  bloc_test: 9.0.2
+  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your

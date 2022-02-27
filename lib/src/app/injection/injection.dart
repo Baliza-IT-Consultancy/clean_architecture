@@ -13,10 +13,12 @@ final sl = GetIt.instance;
 )
 
 /// configure all the dependencies using service location
-Future<void> configureDependencies({
-  required String environment,
+void configureDependencies({
+  String? environment,
   EnvironmentFilter? environmentFilter,
-}) async {
-  $initSL(sl, environment: environment, environmentFilter: environmentFilter);
-  await Future.delayed(const Duration(milliseconds: 100));
-}
+}) =>
+    $initSL(
+      sl,
+      environment: environment ?? Environment.dev,
+      environmentFilter: environmentFilter,
+    );

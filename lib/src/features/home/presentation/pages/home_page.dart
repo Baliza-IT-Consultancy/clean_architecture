@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/configs/app_configs.dart';
 import '../../../shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
+import '../widgets/todo_item_tile.dart';
 
 /// {@template home_page}
 /// Home page
@@ -33,20 +34,17 @@ class HomePage extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return ListTile(
-            leading: Text("${index + 1}."),
-            title: Text('Item $index'),
-            subtitle: const Text('Subtitle'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () {},
-          );
+          // return TodoItemTile(
+          //   index: index,
+          // todo: ,
+          //   onTap: () {},
+          //   onLongPress: () {
+          //     print("hello world");
+          //   },
+          // );
+          return TodoItemTile.prototype;
         },
-        prototypeItem: const ListTile(
-          leading: Text("0"),
-          title: Text('Item 0'),
-          subtitle: Text('Subtitle'),
-          trailing: Icon(Icons.chevron_right),
-        ),
+        prototypeItem: TodoItemTile.prototype,
       ),
     );
   }

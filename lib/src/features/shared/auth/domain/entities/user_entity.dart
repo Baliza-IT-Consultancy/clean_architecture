@@ -25,19 +25,6 @@ class User extends Equatable {
   /// Email of the user
   final String? email;
 
-  /// create a clone of this object
-  User copyWith({
-    String? id,
-    String? name,
-    String? email,
-  }) {
-    return User(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      email: email ?? this.email,
-    );
-  }
-
   /// Check if this user is anonymous
   bool get isEmpty => this == User.empty();
 

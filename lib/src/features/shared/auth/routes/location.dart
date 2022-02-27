@@ -1,10 +1,11 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../features/shared/auth/presentation/pages/auth_selection_page.dart';
-import '../../features/shared/auth/presentation/pages/login_page.dart';
-import '../../features/shared/auth/presentation/pages/signup_page.dart';
-import '../routes.dart';
+import '../../../../core/utils/convertors/route_information_to_uri.dart';
+import '../presentation/pages/auth_selection_page.dart';
+import '../presentation/pages/login_page.dart';
+import '../presentation/pages/signup_page.dart';
 
 /// Location of the Auth Module
 ///
@@ -13,7 +14,7 @@ class AuthLocation extends BeamLocation {
   @override
   List<BeamPage> buildPages(
       BuildContext context, RouteInformationSerializable state) {
-    final path = state.uri.path;
+    final path = routeInfoToUri(state).path;
     return [
       const BeamPage(
         key: ValueKey("Auth Selection Page"),
@@ -21,14 +22,14 @@ class AuthLocation extends BeamLocation {
         name: "Login or Signup Page",
         child: AuthSelectionPage(),
       ),
-      if (path == Routes.login)
+      if (path == '/auth/login')
         const BeamPage(
           key: ValueKey('Login Page'),
           title: "Login",
           name: "Login Page",
           child: LoginPage(),
         ),
-      if (path == Routes.signup)
+      if (path == '/auth/signup')
         const BeamPage(
           key: ValueKey('Signup Page'),
           title: "Signup",
@@ -40,8 +41,8 @@ class AuthLocation extends BeamLocation {
 
   @override
   List<Pattern> get pathPatterns => [
-        Routes.auth,
-        Routes.login,
-        Routes.signup,
+        '/auth',
+        '/auth/login',
+        '/auth/signup',
       ];
 }

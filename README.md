@@ -22,10 +22,27 @@ code structure and lint rules.
     - core
       - base
       - configs
+        - **app_config.dart**
       - constants
+        - colors
+        - constraints
+          - **constraints.dart**
+        - enums
+        - themes
+        - typography?
       - device
+        - **connection_info.dart**
+        - **network_info.dart**
       - error
+        - **exception_to_failure_mapper.dart**
+        - **exceptions.dart**
+        - **failure_codes.dart**
+        - **failures.dart**
       - utils
+        - convertors
+          - **route_information_to_uri.dart**
+        - validators
+          - **validators.dart**
     - external
       - _external_libraries_wrappers_
     - features

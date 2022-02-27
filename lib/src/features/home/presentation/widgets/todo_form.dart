@@ -11,6 +11,14 @@ import '../blocs/todo_bloc/todo_bloc.dart';
 
 /// {@template todo_form_view}
 /// A form widget to create or update a [Todo].
+///
+/// if [Todo] is provided this form will update the [Todo]
+/// on submission else it will create a new [Todo].
+///
+/// [Todo.completed] can only be changed on update.
+///
+/// Note: This [Widget] depends on [TodoBloc] for its operations
+/// make sure [TodoBloc] is in [BuildContext] before using this [Widget].
 /// {@endtemplate}
 class TodoFormView extends StatefulWidget {
   /// {@macro todo_form_view}
@@ -156,8 +164,8 @@ class _TodoFormViewState extends State<TodoFormView> {
     if (formState.validate()) {
       final todo = TodoDTO(
         id: isForUpdate ? widget.todo!.id : null,
-        title: _titleController.text,
-        description: _descriptionController.text,
+        title: _titleController.text.trim(),
+        description: _descriptionController.text.trim(),
         completed: _isCompleted,
       );
 

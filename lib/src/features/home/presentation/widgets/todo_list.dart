@@ -27,6 +27,8 @@ class TodoList extends StatelessWidget {
       itemBuilder: (context, index) {
         final todo = todos[index];
         return TodoItemTile(
+          // To improve the performance of the scroll, we use provide
+          // a custom unique key for each item.
           key: ValueKey(todo.id),
           index: index,
           todo: todo,

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/todo.dart';
+import 'todo_list.dart';
 
 /// {@template todo_item_tile}
-/// A single todo item Tile with and index, title and description.
+/// A single todo item Tile an index, title and description.
+///
+/// In the trailing of this tile is a green check icon if
+/// this todo is completed.
+///
+/// [TodoItemTile] is used in [TodoList] to display a single todo item.
 /// {@endtemplate}
 class TodoItemTile extends StatelessWidget {
   /// {@macro todo_item_tile}

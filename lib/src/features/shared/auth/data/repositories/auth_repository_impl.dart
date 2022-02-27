@@ -7,7 +7,7 @@ import '../../../../../core/error/exception_to_failure_mapper.dart';
 import '../../domain/dtos/auth_dtos.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/auth_repository.dart';
-import '../data_sources/auth_source.dart';
+import '../sources/auth_source.dart';
 
 /// {@template auth_repository_impl}
 /// A concrete implementation of [AuthRepository]

@@ -30,6 +30,13 @@ Failure mapExceptionToFailure(Object? e) {
     return Failure(message: e.message, code: e.code);
   }
 
+  if (e is AssertionError) {
+    return Failure(
+      message: e.message.toString(),
+      code: FailureCodes.ASSERTION_ERROR,
+    );
+  }
+
   return Failure(
     message: "Something went wrong",
     code: FailureCodes.UNKNOWN_ERROR,

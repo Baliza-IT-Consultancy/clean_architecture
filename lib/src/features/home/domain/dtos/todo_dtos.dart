@@ -28,4 +28,9 @@ class TodoDTO {
 
   /// Whether the todo is completed.
   final bool? completed;
+
+  @override
+  String toString() {
+    return 'TodoDTO(id: $id, title: $title, description: $description, completed: $completed)';
+  }
 }

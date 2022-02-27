@@ -52,7 +52,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         ),
         (r) => emit(
           state.copyWith(
-            todos: [r, ...state.todos],
+            todos: [...state.todos, r],
             status: TodoStatus.loaded,
           ),
         ),

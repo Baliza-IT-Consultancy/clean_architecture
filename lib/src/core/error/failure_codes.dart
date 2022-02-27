@@ -19,4 +19,10 @@ class FailureCodes {
 
   /// When the user is not in db.
   static const String USER_DOES_NOT_EXISTS = "4";
+
+  /// When the todo object is not in db.
+  static const String TODO_NOT_FOUND = "5";
+
+  /// When an assertion error is thrown.
+  static const String ASSERTION_ERROR = "6";
 }

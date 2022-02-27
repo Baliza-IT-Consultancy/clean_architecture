@@ -30,11 +30,24 @@ class DevApp extends StatelessWidget {
         routerDelegate: RouteManager.delegate,
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            appBarTheme: const AppBarTheme(color: Color(0xFF13B9FF)),
+          theme: ThemeData.light().copyWith(
+            appBarTheme: const AppBarTheme(elevation: 0),
             colorScheme: ColorScheme.fromSwatch(
-              accentColor: const Color(0xFF13B9FF),
+              accentColor: Colors.green,
             ),
+            inputDecorationTheme: const InputDecorationTheme(
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    AppConstraints.inputFieldOutlineBorderRadius,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          themeMode: ThemeMode.light,
+          darkTheme: ThemeData.dark().copyWith(
+            appBarTheme: const AppBarTheme(elevation: 0),
             inputDecorationTheme: const InputDecorationTheme(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.all(

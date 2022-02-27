@@ -31,9 +31,14 @@ class TodoItemTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: Text("${index + 1}."),
-      title: Text(todo.title),
-      subtitle: todo.description != null ? Text(todo.description!) : null,
-      trailing: const Icon(Icons.chevron_right),
+      title: todo.title != null ? Text(todo.title!) : null,
+      subtitle: Text(todo.description),
+      trailing: todo.completed
+          ? const Icon(
+              Icons.check,
+              color: Colors.green,
+            )
+          : const Icon(Icons.chevron_right),
       onTap: onTap,
       onLongPress: onLongPress,
     );

@@ -50,6 +50,33 @@
     "logout": "Logout",
     "@logout": {
         "description": "The text/tooltip of the logout button"
+    },
+    "cancel": "Cancel",
+    "@cancel": {
+        "description": "The text/tooltip of the cancel button"
+    },
+    "noTodos": "No todos",
+    "@noTodos": {
+        "description": "The text for the no todos message"
+    },
+    "createTodo": "Create Todo",
+    "@createTodo": {
+        "description": "The text for the create todo button and title of the create todo view"
+    },
+    "updateTodo": "Update Todo",
+    "@updateTodo": {
+        "description": "The text for the update todo button and title of the update todo view"
+    },
+    "todoTitle": "Todo Title",
+    "@todoTitle": {
+        "description": "The label for the todo title field"
+    },
+    "todoDescription": "Todo Description",
+    "@todoDescription": {
+        "description": "The label for the todo description field"
+    },
+    "isTodoCompleted": "Is Todo Completed?",
+    "@isTodoCompleted": {
+        "description": "The label for the 'is todo completed' field"
     }
-
 }

@@ -1,8 +1,8 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
 import 'type_defs.dart';
 
+/// {@template usecase_no_param}
 /// Use this when [IUseCase] don't need to take any arguments.
 ///
 /// for example:
@@ -18,10 +18,10 @@ import 'type_defs.dart';
 ///   }
 /// }
 /// ```
-///
-class NoParams extends Equatable {
-  @override
-  List<Object?> get props => const [];
+/// {@endtemplate}
+class NoParams {
+  /// {@macro usecase_no_param}
+  const NoParams();
 }
 
 /// {@template src.core.base.usecase.UseCase}

@@ -33,8 +33,8 @@ class CustomNavigatorObserver extends NavigatorObserver {
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     log('REPLACED: '
-        'from: ${oldRoute?.settings.name}, '
-        'to: ${newRoute?.settings.name}');
+        '${oldRoute?.settings.name}, '
+        'with: ${newRoute?.settings.name}');
   }
 }
 

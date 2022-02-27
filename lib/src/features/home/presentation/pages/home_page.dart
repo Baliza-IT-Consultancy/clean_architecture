@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/configs/app_configs.dart';
 import '../../../shared/auth/presentation/blocs/auth_bloc/auth_bloc.dart';
-import '../widgets/todo_item_tile.dart';
+import '../blocs/todo_bloc/todo_bloc.dart';
+import '../widgets/todo_form.dart';
+import '../widgets/todo_list.dart';
 
 /// {@template home_page}
 /// Home page
@@ -21,7 +23,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(localization.appName),
-        elevation: 0,
         actions: [
           IconButton(
             onPressed: () {
@@ -32,19 +33,51 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          // return TodoItemTile(
-          //   index: index,
-          // todo: ,
-          //   onTap: () {},
-          //   onLongPress: () {
-          //     print("hello world");
-          //   },
-          // );
-          return TodoItemTile.prototype;
+      body: BlocBuilder<TodoBloc, TodoState>(
+        builder: (context, state) {
+          if (state.status == TodoStatus.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state.status == TodoStatus.error) {
+            return Center(
+              child: Text('${state.failure?.message}'),
+            );
+          }
+
+          if (state.todos.isEmpty) {
+            return Center(
+              child: Text(localization.noTodos),
+            );
+          }
+
+          return TodoList(
+            todos: state.todos,
+          );
         },
-        prototypeItem: TodoItemTile.prototype,
+      ),
+      floatingActionButton: BlocBuilder<TodoBloc, TodoState>(
+        builder: (context, state) => FloatingActionButton(
+          tooltip: localization.createTodo,
+          onPressed: state.status == TodoStatus.loading
+              ? null
+              : () => _addTodo(context),
+          child: const Icon(Icons.add),
+        ),
+      ),
+    );
+  }
+
+  void _addTodo(BuildContext context) {
+    final bloc = context.read<TodoBloc>();
+    showDialog(
+      routeSettings: const RouteSettings(name: "Add Todo"),
+      context: context,
+      builder: (context) => BlocProvider.value(
+        value: bloc,
+        child: const Dialog(
+          child: TodoFormView(),
+        ),
       ),
     );
   }

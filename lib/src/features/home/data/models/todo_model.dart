@@ -10,10 +10,10 @@ class TodoModel extends Todo {
   /// {@macro todo_model}
   const TodoModel({
     required String id,
-    required String title,
     required bool completed,
     required DateTime createdAt,
-    String? description,
+    required String description,
+    String? title,
   }) : super(
           id: id,
           title: title,
@@ -50,7 +50,7 @@ class TodoModel extends Todo {
       'title': title,
       'description': description,
       'completed': completed,
-      'createdAt': createdAt?.millisecondsSinceEpoch,
+      'createdAt': createdAt.millisecondsSinceEpoch,
     };
   }
 

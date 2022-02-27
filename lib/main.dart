@@ -1,12 +1,9 @@
-import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 
 import 'bootstrap.dart';
 import 'src/app/app.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-
   const environment = Environment.dev;
 
   bootstrap(

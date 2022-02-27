@@ -1,6 +1,5 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../../../core/utils/convertors/route_information_to_uri.dart';
 import '../presentation/pages/auth_selection_page.dart';

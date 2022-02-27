@@ -7,20 +7,20 @@ class Todo extends Equatable {
   /// {@macro todo_entity}
   const Todo({
     required this.id,
-    required this.title,
+    this.title,
     required this.completed,
     required this.createdAt,
-    this.description,
+    required this.description,
   });
 
   /// A unique identifier for this [Todo].
   final String id;
 
   /// The title of this [Todo].
-  final String title;
+  final String? title;
 
   /// The description of this [Todo].
-  final String? description;
+  final String description;
 
   /// Whether this [Todo] is completed.
   final bool completed;

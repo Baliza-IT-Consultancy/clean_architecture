@@ -1,7 +1,10 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../app/injection/injection.dart';
 import '../../../core/utils/convertors/route_information_to_uri.dart';
+import '../presentation/blocs/todo_bloc/todo_bloc.dart';
 import '../presentation/pages/home_page.dart';
 import '../presentation/pages/splash_page.dart';
 
@@ -22,11 +25,14 @@ class HomeLocation extends BeamLocation {
           child: SplashPage(nextRoute: '/home'),
         ),
       if (path == '/home')
-        const BeamPage(
-          key: ValueKey("Home Page"),
+        BeamPage(
+          key: const ValueKey("Home Page"),
           name: 'Home',
           title: 'Home Page',
-          child: HomePage(),
+          child: BlocProvider<TodoBloc>(
+            create: (context) => sl()..add(const TodoEvent.load()),
+            child: const HomePage(),
+          ),
         ),
     ];
   }

@@ -39,7 +39,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(const _Initial());
-    final result = await logOutUser(NoParams());
+    final result = await logOutUser(const NoParams());
     result.fold(
       (l) => emit(_Unauthenticated(l.message, l.code)),
       (r) => emit(
@@ -72,7 +72,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   FutureOr<void> _onStarted(_Started event, Emitter<AuthState> emit) async {
-    final result = await isUserLoggedInUseCase(NoParams());
+    final result = await isUserLoggedInUseCase(const NoParams());
     result.fold(
       (l) => emit(_Unauthenticated(l.message, l.code)),
       (r) => emit(_Authenticated(r)),

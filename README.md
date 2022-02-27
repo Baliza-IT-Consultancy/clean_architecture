@@ -108,6 +108,7 @@ bloc_test: 9.0.2
 - ### analysis options
 
 ```yaml
+# analysis_options.yaml
 include: package:flutter_lints/flutter.yaml
 
 linter:

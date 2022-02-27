@@ -155,3 +155,12 @@ analyzer:
 ## Explanation
 
 WIP
+
+## How To?
+
+### Q1. How to generate locales?
+
+- Add key, value and description(only in case of **_app_en.arb_**) to **lib/l10n/app\_{lang_code}.arb**
+- run `flutter gen-l10n`
+
+Note: _If `localization.local_key` showing error just restart dart analyzer._

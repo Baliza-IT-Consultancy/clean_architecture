@@ -102,7 +102,7 @@ flutter_lints: ^1.0.4
 build_runner: ^2.1.7
 injectable_generator:
 freezed: ">=1.0.0 <1.1.1"
-bloc_test: 9.0.2
+bloc_test: ^9.0.3
 ```
 
 - ### analysis options

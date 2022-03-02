@@ -67,7 +67,7 @@ dev_dependencies:
   injectable_generator: 
   freezed: ">=1.0.0 <1.1.1"
 
-  bloc_test: 9.0.2
+  bloc_test: ^9.0.3
   
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

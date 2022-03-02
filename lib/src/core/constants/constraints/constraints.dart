@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../features/home/domain/entities/todo.dart';
-
 /// Contains constraints for the app.
 abstract class AppConstraints {
   AppConstraints._();

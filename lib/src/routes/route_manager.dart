@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
-import '../features/home/routes/location.dart';
 import '../features/shared/auth/routes/location.dart';
 import '../features/shared/errors/presentation/pages/not_found_page.dart';
 
@@ -59,7 +58,6 @@ abstract class RouteManager {
 
   /// All the registered locations in the app.
   static final locations = <BeamLocation>[
-    HomeLocation(),
     AuthLocation(),
   ];
 }

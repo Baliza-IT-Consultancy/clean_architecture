@@ -74,6 +74,11 @@ code structure and lint rules.
 
 <hr>
 
+## Note
+
+- \* Models are just an extension of Entities that adds Serialization/Deserialization functionality.
+- \* **For a complex and large project we can use Entities instead of Models by adding Serialization/Deserialization functionality directly into the Entity Class.**
+
 ## Requirements
 
 - ### Dependencies

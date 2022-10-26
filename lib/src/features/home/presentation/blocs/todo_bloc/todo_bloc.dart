@@ -34,10 +34,13 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
           failure: l,
           status: TodoStatus.error,
         )),
-        (r) => emit(state.copyWith(
-          todos: r.sorted(_sortCompare(state.sort)),
-          status: TodoStatus.loaded,
-        )),
+        (r) {
+          r.sort(_sortCompare(state.sort));
+          emit(state.copyWith(
+            todos: r,
+            status: TodoStatus.loaded,
+          ));
+        },
       );
     });
 
@@ -51,12 +54,16 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
             status: TodoStatus.error,
           ),
         ),
-        (r) => emit(
-          state.copyWith(
-            todos: [...state.todos, r].sorted(_sortCompare(state.sort)),
-            status: TodoStatus.loaded,
-          ),
-        ),
+        (r) {
+          final _temp = [...state.todos, r];
+          _temp.sort(_sortCompare(state.sort));
+          emit(
+            state.copyWith(
+              todos: _temp,
+              status: TodoStatus.loaded,
+            ),
+          );
+        },
       );
     });
 
@@ -72,16 +79,20 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
             status: TodoStatus.error,
           ),
         ),
-        (r) => emit(
-          state.copyWith(
-            todos: [
-              ...state.todos.take(index),
-              r,
-              ...state.todos.skip(index + 1),
-            ].sorted(_sortCompare(state.sort)),
-            status: TodoStatus.loaded,
-          ),
-        ),
+        (r) {
+          final _temp = [
+            ...state.todos.take(index),
+            r,
+            ...state.todos.skip(index + 1),
+          ];
+          _temp.sort(_sortCompare(state.sort));
+          emit(
+            state.copyWith(
+              todos: _temp,
+              status: TodoStatus.loaded,
+            ),
+          );
+        },
       );
     });
 
@@ -96,15 +107,19 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
             status: TodoStatus.error,
           ),
         ),
-        (r) => emit(
-          state.copyWith(
-            todos: [
-              ...state.todos.take(index),
-              ...state.todos.skip(index + 1),
-            ].sorted(_sortCompare(state.sort)),
-            status: TodoStatus.loaded,
-          ),
-        ),
+        (r) {
+          final _temp = [
+            ...state.todos.take(index),
+            ...state.todos.skip(index + 1),
+          ];
+          _temp.sort(_sortCompare(state.sort));
+          emit(
+            state.copyWith(
+              todos: _temp,
+              status: TodoStatus.loaded,
+            ),
+          );
+        },
       );
     });
 
@@ -113,9 +128,10 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         final nextSort = state.sort == TodoSortType.completed
             ? TodoSortType.date
             : TodoSortType.completed;
-
+        final _temp = [...state.todos];
+        _temp.sort(_sortCompare(nextSort));
         emit(state.copyWith(
-          todos: state.todos.sorted(_sortCompare(nextSort)),
+          todos: _temp,
           sort: nextSort,
         ));
       },

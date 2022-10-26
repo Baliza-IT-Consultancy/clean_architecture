@@ -11,9 +11,9 @@ import 'src/external/local_db.dart';
 /// any state changes and errors.
 class AppBlocObserver extends BlocObserver {
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    log('onTransition(${bloc.runtimeType}, $transition)');
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    log('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
@@ -31,18 +31,17 @@ Future<void> bootstrap(
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  Bloc.observer = AppBlocObserver();
+
   await LocalDatabase.getInstance().init();
   configureDependencies(environment: environment);
 
-  await BlocOverrides.runZoned(
-    () async => await runZonedGuarded(
-      () async => runApp(await builder()),
-      (error, stackTrace) => log(
-        error.toString(),
-        error: error,
-        stackTrace: stackTrace,
-      ),
+  runZonedGuarded(
+    () async => runApp(await builder()),
+    (error, stackTrace) => log(
+      error.toString(),
+      error: error,
+      stackTrace: stackTrace,
     ),
-    blocObserver: AppBlocObserver(),
   );
 }

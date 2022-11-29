@@ -65,22 +65,52 @@ class DevApp extends StatelessWidget {
           backButtonDispatcher: BeamerBackButtonDispatcher(
             delegate: RouteManager.delegate,
           ),
-          builder: (context, child) => BlocListener<AuthBloc, AuthState>(
-            key: AppConfig.appKey,
-            listener: (context, state) {
-              /// Top level listener for auth state
-              state.whenOrNull(
-                unauthenticated: (message, code) {
-                  if (code == FailureCodes.UNAUTHENTICATED) {
-                    navigator.popToNamed(Routes.auth);
-                  }
-                },
-                authenticated: (_) {
-                  navigator.popToNamed(Routes.home);
-                },
-              );
-            },
-            child: child,
+          builder: (context, child) => GestureDetector(
+            onTap: FocusManager.instance.primaryFocus?.unfocus,
+            child: BlocListener<AuthBloc, AuthState>(
+              key: AppConfig.appKey,
+              listener: (context, state) {
+                /// Top level listener for auth state
+                state.whenOrNull(
+                  preUnauthenticated: (message, code) {
+                    navigator.popToNamed(Routes.splash);
+
+                    final authBloc = context.read<AuthBloc>();
+
+                    // clean up all the active services or
+                    // process for auth user.
+
+                    // finally logout the user
+                    authBloc.add(const AuthEvent.finishLogout());
+                  },
+                  unauthenticated: (message, code) {
+                    if (code == FailureCodes.UNAUTHENTICATED) {
+                      navigator.popToNamed(Routes.auth);
+                    }
+                    if (code == FailureCodes.LOGGED_OUT) {
+                      // we can navigate to some other route on logout here.
+                      navigator.popToNamed(Routes.auth);
+                    }
+                  },
+                  preAuthenticated: (user) {
+                    navigator.popToNamed(Routes.splash);
+
+                    final authBloc = context.read<AuthBloc>();
+
+                    // initialize all the services for the auth user
+                    /// finally login the user
+                    authBloc.add(AuthEvent.loginSuccess(user));
+                  },
+                  authenticated: (_) {
+                    navigator.popToNamed(Routes.home);
+                  },
+                  error: (message, code) {
+                    // we can show error dialog or navigate to some page here
+                  },
+                );
+              },
+              child: child,
+            ),
           ),
         ),
       ),

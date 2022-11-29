@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../core/configs/app_configs.dart';
 import 'injection.config.dart';
 
 /// Global Service Locator
@@ -19,6 +20,6 @@ void configureDependencies({
 }) =>
     $initSL(
       sl,
-      environment: environment ?? Environment.dev,
+      environment: environment ?? AppFlavor.development,
       environmentFilter: environmentFilter,
     );

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'src/app/injection/injection.dart';
@@ -11,15 +12,31 @@ import 'src/external/local_db.dart';
 /// any state changes and errors.
 class AppBlocObserver extends BlocObserver {
   @override
-  void onTransition(Bloc bloc, Transition transition) {
-    super.onTransition(bloc, transition);
-    log('onTransition(${bloc.runtimeType}, $transition)');
+  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    log(
+      'onError -- (${bloc.runtimeType}, $error)',
+      error: error,
+      stackTrace: stackTrace,
+    );
+    super.onError(bloc, error, stackTrace);
   }
 
   @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
-    super.onError(bloc, error, stackTrace);
+  void onCreate(BlocBase bloc) {
+    log('onCreate -- (${bloc.runtimeType})');
+    super.onCreate(bloc);
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    log('onClose -- (${bloc.runtimeType})');
+    super.onClose(bloc);
+  }
+
+  @override
+  void onChange(BlocBase bloc, Change change) {
+    super.onChange(bloc, change);
+    log('onChange -- (${bloc.runtimeType}, $change)');
   }
 }
 
@@ -31,18 +48,22 @@ Future<void> bootstrap(
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  PlatformDispatcher.instance.onError = (error, stack) {
+    log(error.toString(), error: error, stackTrace: stack);
+    return true;
+  };
+
+  Bloc.observer = AppBlocObserver();
+
   await LocalDatabase.getInstance().init();
   configureDependencies(environment: environment);
 
-  await BlocOverrides.runZoned(
-    () async => await runZonedGuarded(
-      () async => runApp(await builder()),
-      (error, stackTrace) => log(
-        error.toString(),
-        error: error,
-        stackTrace: stackTrace,
-      ),
+  runZonedGuarded(
+    () async => runApp(await builder()),
+    (error, stackTrace) => log(
+      error.toString(),
+      error: error,
+      stackTrace: stackTrace,
     ),
-    blocObserver: AppBlocObserver(),
   );
 }

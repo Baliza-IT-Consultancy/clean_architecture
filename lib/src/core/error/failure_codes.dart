@@ -25,4 +25,14 @@ class FailureCodes {
 
   /// When an assertion error is thrown.
   static const String ASSERTION_ERROR = "6";
+
+  /// When some action is performed on db document which doesn't
+  /// belong to the authenticated user.
+  static const String INVALID_ACCOUNT = "7";
+
+  /// When the user is not in loggedin.
+  ///
+  /// It is different then [UNAUTHENTICATED] because this is explicitly
+  /// used to check if the user is loggedin or not by [AuthBloc].
+  static const String LOGGED_OUT = "8";
 }

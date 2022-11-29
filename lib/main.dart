@@ -1,21 +1,28 @@
-import 'package:injectable/injectable.dart';
+import 'package:flutter/widgets.dart';
 
 import 'bootstrap.dart';
 import 'src/app/app.dart';
+import 'src/core/configs/app_configs.dart';
 
 void main() {
-  const environment = Environment.dev;
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // set orientation of the app
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
 
   bootstrap(
     () {
-      switch (environment) {
-        case Environment.prod:
+      switch (AppConfig.flavor) {
+        case AppFlavor.production:
           return const ProdApp();
-        case Environment.dev:
+        case AppFlavor.development:
         default:
           return const DevApp();
       }
     },
-    environment,
+    AppConfig.flavor,
   );
 }

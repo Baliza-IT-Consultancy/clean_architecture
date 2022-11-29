@@ -1,4 +1,7 @@
+// ignore_for_file: flutter_style_todos
+
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -14,13 +17,14 @@ import '../../../domain/usecases/signin_user_usecase.dart';
 
 part 'auth_bloc.freezed.dart';
 part 'auth_event.dart';
+part 'auth_event_listeners.dart';
 part 'auth_state.dart';
 
 ///{@template auth_bloc}
 /// Bloc for handling authentication status
 /// {@endtemplate}
 @injectable
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+class AuthBloc extends Bloc<AuthEvent, AuthState> with AuthEventListeners {
   /// {@macro auth_bloc}
   AuthBloc(
     this.isUserLoggedInUseCase,
@@ -30,53 +34,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) : super(const _Initial()) {
     on<_Started>(_onStarted);
     on<_LoggedIn>(_onLoggedIn);
-    on<_LoggedOut>(_onLoggedOut);
     on<_CreateAccount>(_onCreateAccount);
-  }
 
-  FutureOr<void> _onLoggedOut(
-    _LoggedOut event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(const _Initial());
-    final result = await logOutUser(const NoParams());
-    result.fold(
-      (l) => emit(_Unauthenticated(l.message, l.code)),
-      (r) => emit(
-        const _Unauthenticated(
-          'logged out successfully',
-          FailureCodes.UNAUTHENTICATED,
-        ),
-      ),
-    );
-  }
-
-  FutureOr<void> _onCreateAccount(
-      _CreateAccount event, Emitter<AuthState> emit) async {
-    emit(const _Initial());
-    final result = await createNewUser(event.payload);
-
-    result.fold(
-      (l) => emit(_Unauthenticated(l.message, l.code)),
-      (r) => emit(_Authenticated(r)),
-    );
-  }
-
-  FutureOr<void> _onLoggedIn(_LoggedIn event, Emitter<AuthState> emit) async {
-    emit(const _Initial());
-    final result = await signInUser(event.payload);
-    result.fold(
-      (l) => emit(AuthState.unauthenticated(l.message, l.code)),
-      (r) => emit(AuthState.authenticated(r)),
-    );
-  }
-
-  FutureOr<void> _onStarted(_Started event, Emitter<AuthState> emit) async {
-    final result = await isUserLoggedInUseCase(const NoParams());
-    result.fold(
-      (l) => emit(_Unauthenticated(l.message, l.code)),
-      (r) => emit(_Authenticated(r)),
-    );
+    //  Below are the preferred set of event actions
+    on<_LoggedOut>(_onLoggedOut);
+    on<_Waiting>(_onWaiting);
+    on<_ErrorOccurred>(_onErrorOccurred);
+    on<_FinishLogout>(_onFinishLogout);
+    on<_RestartProcess>(_onRestartProcess);
+    on<_LoginSuccess>(_onLoginSuccess);
   }
 
   /// {@macro is_user_logged_in_usecase_template}
@@ -90,4 +56,48 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   /// {@macro logout_user_usecase}
   final LogOutUser logOutUser;
+
+  FutureOr<void> _onCreateAccount(
+      _CreateAccount event, Emitter<AuthState> emit) async {
+    emit(const _Initial());
+    final result = await createNewUser(event.payload);
+
+    result.fold(
+      (l) => emit(_Unauthenticated(l.message, l.code)),
+      (r) => emit(_PreAuthenticated(r)),
+    );
+  }
+
+  FutureOr<void> _onLoggedIn(_LoggedIn event, Emitter<AuthState> emit) async {
+    emit(const _Initial());
+    final result = await signInUser(event.payload);
+    result.fold(
+      (l) => emit(AuthState.unauthenticated(l.message, l.code)),
+      (r) => emit(AuthState.preAuthenticated(r)),
+    );
+  }
+
+  FutureOr<void> _onStarted(_Started event, Emitter<AuthState> emit) async {
+    final result = await isUserLoggedInUseCase(const NoParams());
+    result.fold(
+      (l) => emit(_Unauthenticated(l.message, l.code)),
+      (r) => emit(_PreAuthenticated(r)),
+    );
+  }
+
+  /// finally logout user
+  FutureOr<void> _onFinishLogout(event, emit) async {
+    final currentState = state as _PreUnauthenticated;
+
+    final result = await logOutUser(const NoParams());
+    result.fold(
+      (l) => emit(_Unauthenticated(l.message, l.code)),
+      (r) => emit(
+        _Unauthenticated(
+          currentState.message,
+          FailureCodes.LOGGED_OUT,
+        ),
+      ),
+    );
+  }
 }

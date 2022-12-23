@@ -3,6 +3,8 @@
 An Example Todo Project using Clean Architecture and following strict
 code structure and lint rules.
 
+<hr />
+
 ## Architectural Data Flow Diagram
 
 ![clean_architecture](baliza_clean_architecture_flow_diagram.png)

@@ -9,13 +9,13 @@ class LocalDatabase {
   LocalDatabase._();
 
   late Box _authBox;
-  late Box _todoBox;
+  late Box _defaultBox;
 
   /// initialize LocalDatabase
   Future<void> init() async {
     await Hive.initFlutter();
+    _defaultBox = await Hive.openBox('default');
     _authBox = await Hive.openBox('auth');
-    _todoBox = await Hive.openBox('todo');
   }
 
   static final LocalDatabase _instance = LocalDatabase._();
@@ -27,10 +27,10 @@ class LocalDatabase {
   }
 
   /// get authBox
-  Box get authBox => _authBox;
+  Box get defaultBox => _defaultBox;
 
-  /// get todoBox
-  Box get todoBox => _todoBox;
+  /// get default box
+  Box get authBox => _authBox;
 
   /// close the database
   @disposeMethod

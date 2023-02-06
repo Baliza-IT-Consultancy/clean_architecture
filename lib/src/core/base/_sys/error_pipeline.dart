@@ -67,11 +67,14 @@ class FlutterErrorPipeline {
     Map<Object?, Object?>? zoneValues,
     ZoneSpecification? zoneSpecification,
   }) {
+    final defaultSpec = ZoneSpecification(print: (self, parent, zone, line) {
+      parent.print(zone, "YOOOOO: $line");
+    });
     return runZonedGuarded<R>(
       body,
       _onZoneError,
       zoneValues: zoneValues,
-      zoneSpecification: zoneSpecification,
+      zoneSpecification: zoneSpecification ?? defaultSpec,
     );
   }
 

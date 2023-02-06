@@ -12,13 +12,10 @@ import 'src/external/local_db.dart';
 /// [runApp] with the widget returned by [builder] in an error zone.
 Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   final pipeline = FlutterErrorPipeline.instance;
-  Bloc.observer = AppBlocObserver();
+  Bloc.observer = const AppBlocObserver();
 
   await LocalDatabase.getInstance().init();
   configureDependencies();
-
   pipeline.enableBasicLogging();
-  pipeline.runInZone(
-    () async => runApp(await builder()),
-  );
+  pipeline.runInZone(() async => runApp(await builder()));
 }

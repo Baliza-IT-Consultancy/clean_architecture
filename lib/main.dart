@@ -6,7 +6,6 @@ import 'src/core/configs/app_configs.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   bootstrap(() {
     switch (AppConfig.flavor) {
       case AppFlavor.production:

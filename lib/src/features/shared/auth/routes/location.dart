@@ -1,7 +1,6 @@
 import 'package:beamer/beamer.dart';
 import 'package:flutter/widgets.dart';
 
-import '../../../../core/utils/convertors/route_information_to_uri.dart';
 import '../presentation/pages/auth_selection_page.dart';
 import '../presentation/pages/login_page.dart';
 import '../presentation/pages/signup_page.dart';
@@ -9,11 +8,10 @@ import '../presentation/pages/signup_page.dart';
 /// Location of the Auth Module
 ///
 /// This location covers login and sign up page routes
-class AuthLocation extends BeamLocation {
+class AuthLocation extends BeamLocation<BeamState> {
   @override
-  List<BeamPage> buildPages(
-      BuildContext context, RouteInformationSerializable state) {
-    final path = routeInfoToUri(state).path;
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    final path = state.uri.path;
     return [
       const BeamPage(
         key: ValueKey("Auth Selection Page"),

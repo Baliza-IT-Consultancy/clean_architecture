@@ -15,11 +15,10 @@ final sl = GetIt.instance;
 
 /// configure all the dependencies using service location
 void configureDependencies({
-  String? environment,
   EnvironmentFilter? environmentFilter,
 }) =>
     $initSL(
       sl,
-      environment: environment ?? AppFlavor.development,
+      environment: AppConfig.flavor,
       environmentFilter: environmentFilter,
     );

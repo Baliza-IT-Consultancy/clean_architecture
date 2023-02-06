@@ -21,7 +21,7 @@ abstract class AppConfig {
 
   /// current flavor of the app
   static const String flavor =
-      String.fromEnvironment('flavor', defaultValue: AppFlavor.production);
+      String.fromEnvironment('flavor', defaultValue: AppFlavor.development);
 
   /// A global key to get top most context
   ///

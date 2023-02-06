@@ -36,7 +36,7 @@ class NoParams {
 ///
 /// ```dart
 /// class TurnLightOn implements UseCase<bool, int> {
-///   const TurnLightOn(this.repository);
+///   const TurnLightOn(this.repository, this.validator);
 ///
 ///   final LightRepository repository;
 ///   final LightValidator validator;

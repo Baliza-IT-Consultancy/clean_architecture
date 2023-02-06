@@ -3,6 +3,8 @@
 An Example Todo Project using Clean Architecture and following strict
 code structure and lint rules.
 
+<hr />
+
 ## Architectural Data Flow Diagram
 
 ![clean_architecture](baliza_clean_architecture_flow_diagram.png)
@@ -73,6 +75,11 @@ code structure and lint rules.
   - **main.dart**
 
 <hr>
+
+## Note
+
+- \* Models are just an extension of Entities that adds Serialization/Deserialization functionality.
+- \* **For a complex and large project we can use Entities instead of Models by adding Serialization/Deserialization functionality directly into the Entity Class.**
 
 ## Requirements
 

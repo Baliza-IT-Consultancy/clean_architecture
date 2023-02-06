@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../app/injection/injection.dart';
-import '../../../core/utils/convertors/route_information_to_uri.dart';
 import '../presentation/blocs/todo_bloc/todo_bloc.dart';
 import '../presentation/blocs/todo_filter/todo_filter_bloc.dart';
 import '../presentation/pages/home_page.dart';
@@ -12,11 +11,10 @@ import '../presentation/pages/splash_page.dart';
 /// Home Route of the app
 ///
 /// This route will the first to mount in the app.
-class HomeLocation extends BeamLocation {
+class HomeLocation extends BeamLocation<BeamState> {
   @override
-  List<BeamPage> buildPages(
-      BuildContext context, RouteInformationSerializable state) {
-    final path = routeInfoToUri(state).path;
+  List<BeamPage> buildPages(BuildContext context, BeamState state) {
+    final path = state.uri.path;
     return [
       if (path != '/home')
         const BeamPage(

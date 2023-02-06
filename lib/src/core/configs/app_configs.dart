@@ -2,9 +2,24 @@ import 'package:beamer/beamer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// Available Flavors
+class AppFlavor {
+  AppFlavor._();
+
+  /// Production flavor
+  static const production = "prod";
+
+  /// Development flavor
+  static const development = "dev";
+}
+
 /// App global configuration
 abstract class AppConfig {
   AppConfig._();
+
+  /// current flavor of the app
+  static const String flavor =
+      String.fromEnvironment('flavor', defaultValue: AppFlavor.development);
 
   /// A global key to get top most context
   ///

@@ -1,21 +1,19 @@
-import 'package:injectable/injectable.dart';
+import 'package:flutter/widgets.dart';
 
 import 'bootstrap.dart';
 import 'src/app/app.dart';
+import 'src/core/configs/app_configs.dart';
 
 void main() {
-  const environment = Environment.dev;
+  WidgetsFlutterBinding.ensureInitialized();
 
-  bootstrap(
-    () {
-      switch (environment) {
-        case Environment.prod:
-          return const ProdApp();
-        case Environment.dev:
-        default:
-          return const DevApp();
-      }
-    },
-    environment,
-  );
+  bootstrap(() {
+    switch (AppConfig.flavor) {
+      case AppFlavor.production:
+        return const ProdApp();
+      case AppFlavor.development:
+      default:
+        return const DevApp();
+    }
+  });
 }
